@@ -11,73 +11,130 @@
 
 DataBasseThread::DataBasseThread(QObject *obj)
 {
-    int isData = 0;
-    // 추가부분 시작
-    QSqlDatabase clientDB = QSqlDatabase::addDatabase("QSQLITE"); // WINDOW에선 QODBC를 사용할 수 있지만, 일관적으로 제공하는 SQLLITE를 사용
-    //clientDB.setDatabaseName("data.db"); // ":memory:" 으로 바꾸면 메모리에 저장하는데, 속도는 빠르지만, 파일에 저장은 안됨
-    clientDB.setDatabaseName("exdata.db"); // ":memory:" 으로 바꾸면 메모리에 저장하는데, 속도는 빠르지만, 파일에 저장은 안됨
+//    int isData = 0;
+//    // 추가부분 시작
+//    QSqlDatabase clientDB = QSqlDatabase::addDatabase("QSQLITE"); // WINDOW에선 QODBC를 사용할 수 있지만, 일관적으로 제공하는 SQLLITE를 사용
+//    //clientDB.setDatabaseName("data.db"); // ":memory:" 으로 바꾸면 메모리에 저장하는데, 속도는 빠르지만, 파일에 저장은 안됨
+//    clientDB.setDatabaseName("exdata.db"); // ":memory:" 으로 바꾸면 메모리에 저장하는데, 속도는 빠르지만, 파일에 저장은 안됨
 
-    if (!clientDB.open( )) cout << "fail" << endl;
-    QSqlQuery query;
-    query.exec("CREATE TABLE IF NOT EXISTS client(m_clientNum INTEGER, m_clientId VARCHAR(20), m_clientPw VARCHAR(20) NOT NULL, m_clientName VARCHAR(20) NOT NULL, m_clientPhoneNum VARCHAR(20) NOT NULL, m_clientAddress VARCHAR(20) NOT NULL);");
-    //query.exec("CREATE TABLE IF NOT EXISTS client(num INTEGER, id VARCHAR(20) Primary Key, password VARCHAR(20) NOT NULL, name VARCHAR(20) NOT NULL, phoneNumber VARCHAR(20) NOT NULL, address VARCHAR(20) NOT NULL);");
+//    if (!clientDB.open( )) cout << "fail" << endl;
+//    QSqlQuery query;
+//    query.exec("CREATE TABLE IF NOT EXISTS client(m_clientNum INTEGER, m_clientId VARCHAR(20), m_clientPw VARCHAR(20) NOT NULL, m_clientName VARCHAR(20) NOT NULL, m_clientPhoneNum VARCHAR(20) NOT NULL, m_clientAddress VARCHAR(20) NOT NULL);");
+//    //query.exec("CREATE TABLE IF NOT EXISTS client(num INTEGER, id VARCHAR(20) Primary Key, password VARCHAR(20) NOT NULL, name VARCHAR(20) NOT NULL, phoneNumber VARCHAR(20) NOT NULL, address VARCHAR(20) NOT NULL);");
 
-    clientModel = new QSqlTableModel();
+//    clientModel = new QSqlTableModel();
 
-    //tableview = new QTableView(this);
-    clientModel->setTable("client");
-    clientModel->setEditStrategy(QSqlTableModel::OnFieldChange);
-    clientModel->select();
+//    //tableview = new QTableView(this);
+//    clientModel->setTable("client");
+//    clientModel->setEditStrategy(QSqlTableModel::OnFieldChange);
+//    clientModel->select();
 
-    clientModel->setHeaderData(0, Qt::Horizontal, QObject::tr("m_clientNum"));
-    clientModel->setHeaderData(1, Qt::Horizontal, QObject::tr("m_clientId"));
-    clientModel->setHeaderData(2, Qt::Horizontal, QObject::tr("m_clientPw"));
-    clientModel->setHeaderData(3, Qt::Horizontal, QObject::tr("m_clientName"));
-    clientModel->setHeaderData(4, Qt::Horizontal, QObject::tr("m_clientPhoneNum"));
-    clientModel->setHeaderData(5, Qt::Horizontal, QObject::tr("m_clientAddress"));
+//    clientModel->setHeaderData(0, Qt::Horizontal, QObject::tr("m_clientNum"));
+//    clientModel->setHeaderData(1, Qt::Horizontal, QObject::tr("m_clientId"));
+//    clientModel->setHeaderData(2, Qt::Horizontal, QObject::tr("m_clientPw"));
+//    clientModel->setHeaderData(3, Qt::Horizontal, QObject::tr("m_clientName"));
+//    clientModel->setHeaderData(4, Qt::Horizontal, QObject::tr("m_clientPhoneNum"));
+//    clientModel->setHeaderData(5, Qt::Horizontal, QObject::tr("m_clientAddress"));
 
-//    /*
-    if (clientModel->rowCount() == 2) {
-        // 데이터가 없으면 샘플 데이터 추가
-        std::cout << "데이터 샘플 추가" << std::endl;
-        insertData(clientModel, 0, "clientId", "password", "name", "phone", "address");
-        if (!clientModel->submitAll()) {
-            cout << "Error adding sample data : " << clientModel->lastError().text().toStdString() << endl;
+////    /*
+//    if (clientModel->rowCount() == 2) {
+//        // 데이터가 없으면 샘플 데이터 추가
+//        std::cout << "데이터 샘플 추가" << std::endl;
+//        insertData(clientModel, 0, "clientId", "password", "name", "phone", "address");
+//        if (!clientModel->submitAll()) {
+//            cout << "Error adding sample data : " << clientModel->lastError().text().toStdString() << endl;
+//        }
+//        clientModel->select();
+//    }
+////    */
+//    //clientModel->select( );
+//    std::cout << "init rowCount : " << clientModel->rowCount() << std::endl;
+//    for (int row = 0; row < clientModel->rowCount(); row++) {
+//        int num = clientModel->data(clientModel->index(row, 0)).toInt();
+//        QString id = clientModel->data(clientModel->index(row, 1)).toString(); // ID
+//        QString password = clientModel->data(clientModel->index(row, 2)).toString(); // Password
+//        QString name = clientModel->data(clientModel->index(row, 3)).toString(); // Name
+//        QString phoneNumber = clientModel->data(clientModel->index(row, 4)).toString(); // Phone Number
+//        QString address = clientModel->data(clientModel->index(row, 5)).toString(); // Address
+//        std::cout << " row value : " << row << std::endl;
+//        //std::cout << "init rowCount : " << clientModel->rowCount() << std::endl;
+//        ClientItem* c = new ClientItem(num, id, password, name, phoneNumber, address);
+//        clientList.insert(id, c);
+//        std::cout << "address : /" << address.toStdString() << "id : /" << id.toStdString() << "password : /" << password.toStdString() << "/"  << std::endl;
+//        std::cout << "c.address : /" << c->getClientAddress().toStdString() << "c.id : /" << c->getClientId().toStdString() << "c.password : /" << c->getClientPw().toStdString() << "/"  << std::endl;
+//        isData = 1;
+//    }
+//    if (!clientModel->submitAll()) {
+//        cout << "Error first saving changes: " << clientModel->lastError().text().toStdString() << endl;
+//    }
+//    clientModel->select();
+//    if(isData != 0)
+//    {
+//        for (const auto& v : clientList) {
+//            ClientItem* c = v;
+//            std::cout << c->getClientNum() << ", ";
+//            std::cout << c->getClientId().toStdString() << ", " << c->getClientPw().toStdString() << ", ";
+//            std::cout << c->getClientName().toStdString() << ", " << c->getClientPhoneNum().toStdString() << ", ";
+//            std::cout << c->getClientAddress().toStdString() << std::endl;
+//        }
+//    }
+
+        QSqlDatabase clientDB = QSqlDatabase::addDatabase("QSQLITE");
+        clientDB.setDatabaseName("exdata.db");
+
+        if (!clientDB.open()) {
+            std::cerr << "Failed to open database: "
+                      << clientDB.lastError().text().toStdString() << std::endl;
+            std::exit(EXIT_FAILURE);
         }
+
+        QSqlQuery query;
+        query.exec("CREATE TABLE IF NOT EXISTS client("
+                   "m_clientNum INTEGER, "
+                   "m_clientId VARCHAR(20), "
+                   "m_clientPw VARCHAR(20) NOT NULL, "
+                   "m_clientName VARCHAR(20) NOT NULL, "
+                   "m_clientPhoneNum VARCHAR(20) NOT NULL, "
+                   "m_clientAddress VARCHAR(20) NOT NULL);");
+
+        clientModel = new QSqlTableModel();
+        clientModel->setTable("client");
+        clientModel->setEditStrategy(QSqlTableModel::OnFieldChange);
         clientModel->select();
-    }
-//    */
-    //clientModel->select( );
-    std::cout << "init rowCount : " << clientModel->rowCount() << std::endl;
-    for (int row = 0; row < clientModel->rowCount(); row++) {
-        int num = clientModel->data(clientModel->index(row, 0)).toInt();
-        QString id = clientModel->data(clientModel->index(row, 1)).toString(); // ID
-        QString password = clientModel->data(clientModel->index(row, 2)).toString(); // Password
-        QString name = clientModel->data(clientModel->index(row, 3)).toString(); // Name
-        QString phoneNumber = clientModel->data(clientModel->index(row, 4)).toString(); // Phone Number
-        QString address = clientModel->data(clientModel->index(row, 5)).toString(); // Address
-        std::cout << " row value : " << row << std::endl;
-        //std::cout << "init rowCount : " << clientModel->rowCount() << std::endl;
-        ClientItem* c = new ClientItem(num, id, password, name, phoneNumber, address);
-        clientList.insert(id, c);
-        std::cout << "address : /" << address.toStdString() << "id : /" << id.toStdString() << "password : /" << password.toStdString() << "/"  << std::endl;
-        std::cout << "c.address : /" << c->getClientAddress().toStdString() << "c.id : /" << c->getClientId().toStdString() << "c.password : /" << c->getClientPw().toStdString() << "/"  << std::endl;
-        isData = 1;
-    }
-    if (!clientModel->submitAll()) {
-        cout << "Error first saving changes: " << clientModel->lastError().text().toStdString() << endl;
-    }
-    clientModel->select();
-    if(isData != 0)
-    {
-        for (const auto& v : clientList) {
-            ClientItem* c = v;
-            std::cout << c->getClientNum() << ", ";
-            std::cout << c->getClientId().toStdString() << ", " << c->getClientPw().toStdString() << ", ";
-            std::cout << c->getClientName().toStdString() << ", " << c->getClientPhoneNum().toStdString() << ", ";
-            std::cout << c->getClientAddress().toStdString() << std::endl;
+
+        if (clientModel->rowCount() == 0) {
+            std::cout << "Adding sample data..." << std::endl;
+            insertData(clientModel, 0, "clientId", "password", "name", "phone", "address");
+            if (!clientModel->submitAll()) {
+                std::cerr << "Error adding sample data: "
+                          << clientModel->lastError().text().toStdString() << std::endl;
+            }
+            clientModel->select();
         }
-    }
+
+        if (clientList.isEmpty()) {
+            for (int row = 0; row < clientModel->rowCount(); row++) {
+                int num = clientModel->data(clientModel->index(row, 0)).toInt();
+                QString id = clientModel->data(clientModel->index(row, 1)).toString();
+                QString password = clientModel->data(clientModel->index(row, 2)).toString();
+                QString name = clientModel->data(clientModel->index(row, 3)).toString();
+                QString phoneNumber = clientModel->data(clientModel->index(row, 4)).toString();
+                QString address = clientModel->data(clientModel->index(row, 5)).toString();
+
+                ClientItem* c = new ClientItem(num, id, password, name, phoneNumber, address);
+                clientList.insert(id, c);
+            }
+        }
+
+        if (!clientList.isEmpty()) {
+            for (const auto& v : clientList) {
+                ClientItem* c = v;
+                std::cout << c->getClientNum() << ", " << c->getClientId().toStdString() << ", "
+                          << c->getClientPw().toStdString() << ", " << c->getClientName().toStdString() << ", "
+                          << c->getClientPhoneNum().toStdString() << ", "
+                          << c->getClientAddress().toStdString() << std::endl;
+            }
+        }
 
 }
 DataBasseThread::~DataBasseThread()

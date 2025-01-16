@@ -58,14 +58,14 @@ static const uint qt_meta_data_ChatWidget[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   29,    2, 0x06 /* Public */,
+       1,    1,   29,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   30,    2, 0x08 /* Private */,
-       4,    0,   31,    2, 0x08 /* Private */,
+       3,    0,   32,    2, 0x08 /* Private */,
+       4,    0,   33,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    2,
 
  // slots: parameters
     QMetaType::Void,
@@ -80,7 +80,7 @@ void ChatWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<ChatWidget *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->signal_newMsg(); break;
+        case 0: _t->signal_newMsg((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->on_pushButton_clicked(); break;
         case 2: _t->on_pushButton_2_clicked(); break;
         default: ;
@@ -88,14 +88,13 @@ void ChatWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (ChatWidget::*)();
+            using _t = void (ChatWidget::*)(QString );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&ChatWidget::signal_newMsg)) {
                 *result = 0;
                 return;
             }
         }
     }
-    (void)_a;
 }
 
 QT_INIT_METAOBJECT const QMetaObject ChatWidget::staticMetaObject = { {
@@ -139,9 +138,10 @@ int ChatWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ChatWidget::signal_newMsg()
+void ChatWidget::signal_newMsg(QString _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE
