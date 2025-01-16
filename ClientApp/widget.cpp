@@ -95,11 +95,13 @@ Widget::Widget(QWidget *parent)
      connect(this, SIGNAL(signal_newFriend(QString)),this,SLOT(slot_newFriend(QString)));
      makeGroupChat = new SearchId();
      connect(chatList,SIGNAL(make_groupchat()),this,SLOT(slot_makegroupchat()));
+     connect(makeGroupChat,SIGNAL(clicked_search(QString)),this,SLOT());
 }
 
 Widget::~Widget()
 {
     delete ui;
+
     clientSocket->close();
 }
 
@@ -263,8 +265,9 @@ void Widget::afterLogin()
 {
     chatList->setWindowTitle(myInfo->getMyId());
 }
-void Widget::sendData()
+void Widget::sendData(QString curport)
 {
+    myInfo->currentPort = myInfo->getMyId()+":"+curport;
     QStringList splitPort = myInfo->currentPort.split(':');
     QString currport;
     for(int i=0;i<2;i++)
@@ -273,7 +276,7 @@ void Widget::sendData()
             currport = splitPort[i];
     }
     QString forsend = joinChatList[currport]->getText();
-    QString str = "2,,"+myInfo->currentPort+","+myInfo->getMyId()+","+forsend;
+    QString str = "2,,"+ myInfo->currentPort +","+myInfo->getMyId()+","+forsend;
     joinChatList[currport]->setText(myInfo->getMyId(),"me:"+forsend);
 
     if(str.length()) {
@@ -408,7 +411,7 @@ void Widget:: after_search(QString searchId)
             chatList->addchatroom(searchId);
             joinChatList.insert(searchId,chatWidget);
             chatWidget->setWindowTitle(searchId);
-            connect(joinChatList[searchId],SIGNAL(signal_newMsg()),this,SLOT(sendData()));
+            connect(joinChatList[searchId],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
         }
         else
         {
@@ -448,7 +451,7 @@ void Widget::slot_newFriend(QString newFriend)
         chatList->addchatroom(newFriend);
         joinChatList.insert(newFriend,new_chatWidget);
         new_chatWidget->setWindowTitle(newFriend);
-        connect(joinChatList[newFriend],SIGNAL(signal_newMsg()),this,SLOT(sendData()));
+        connect(joinChatList[newFriend],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
         joinChatList[newFriend]->show();
         myInfo->currentPort = newPort;
         joinChatList[newMessaage->getMsgSendCli()]->setText(newMessaage->getMsgSendCli(),"others:"+newMessaage->getMsgContext());
@@ -476,5 +479,6 @@ void Widget::slot_newFriend(QString newFriend)
 void Widget::slot_makegroupchat()
 {
    makeGroupChat->show();
+
 
 }

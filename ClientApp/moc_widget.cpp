@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[20];
-    char stringdata0[258];
+    QByteArrayData data[21];
+    char stringdata0[266];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,25 +38,26 @@ QT_MOC_LITERAL(2, 22, 0), // ""
 QT_MOC_LITERAL(3, 23, 16), // "signal_newFriend"
 QT_MOC_LITERAL(4, 40, 8), // "echoData"
 QT_MOC_LITERAL(5, 49, 8), // "sendData"
-QT_MOC_LITERAL(6, 58, 14), // "slot_loginInfo"
-QT_MOC_LITERAL(7, 73, 4), // "name"
-QT_MOC_LITERAL(8, 78, 14), // "makeConnection"
-QT_MOC_LITERAL(9, 93, 18), // "slot_createAccount"
-QT_MOC_LITERAL(10, 112, 16), // "slot_creatAccDel"
-QT_MOC_LITERAL(11, 129, 12), // "connectError"
-QT_MOC_LITERAL(12, 142, 14), // "recvClientInfo"
-QT_MOC_LITERAL(13, 157, 19), // "slot_click_chatroom"
-QT_MOC_LITERAL(14, 177, 8), // "chatroom"
-QT_MOC_LITERAL(15, 186, 17), // "slot_click_search"
-QT_MOC_LITERAL(16, 204, 9), // "search_Id"
-QT_MOC_LITERAL(17, 214, 14), // "slot_newFriend"
-QT_MOC_LITERAL(18, 229, 9), // "newFriend"
-QT_MOC_LITERAL(19, 239, 18) // "slot_makegroupchat"
+QT_MOC_LITERAL(6, 58, 7), // "curport"
+QT_MOC_LITERAL(7, 66, 14), // "slot_loginInfo"
+QT_MOC_LITERAL(8, 81, 4), // "name"
+QT_MOC_LITERAL(9, 86, 14), // "makeConnection"
+QT_MOC_LITERAL(10, 101, 18), // "slot_createAccount"
+QT_MOC_LITERAL(11, 120, 16), // "slot_creatAccDel"
+QT_MOC_LITERAL(12, 137, 12), // "connectError"
+QT_MOC_LITERAL(13, 150, 14), // "recvClientInfo"
+QT_MOC_LITERAL(14, 165, 19), // "slot_click_chatroom"
+QT_MOC_LITERAL(15, 185, 8), // "chatroom"
+QT_MOC_LITERAL(16, 194, 17), // "slot_click_search"
+QT_MOC_LITERAL(17, 212, 9), // "search_Id"
+QT_MOC_LITERAL(18, 222, 14), // "slot_newFriend"
+QT_MOC_LITERAL(19, 237, 9), // "newFriend"
+QT_MOC_LITERAL(20, 247, 18) // "slot_makegroupchat"
 
     },
     "Widget\0sig_presentMsg\0\0signal_newFriend\0"
-    "echoData\0sendData\0slot_loginInfo\0name\0"
-    "makeConnection\0slot_createAccount\0"
+    "echoData\0sendData\0curport\0slot_loginInfo\0"
+    "name\0makeConnection\0slot_createAccount\0"
     "slot_creatAccDel\0connectError\0"
     "recvClientInfo\0slot_click_chatroom\0"
     "chatroom\0slot_click_search\0search_Id\0"
@@ -83,17 +84,17 @@ static const uint qt_meta_data_Widget[] = {
 
  // slots: name, argc, parameters, tag, flags
        4,    0,   92,    2, 0x08 /* Private */,
-       5,    0,   93,    2, 0x08 /* Private */,
-       6,    1,   94,    2, 0x08 /* Private */,
-       8,    0,   97,    2, 0x08 /* Private */,
-       9,    0,   98,    2, 0x08 /* Private */,
-      10,    0,   99,    2, 0x08 /* Private */,
-      11,    0,  100,    2, 0x08 /* Private */,
-      12,    1,  101,    2, 0x08 /* Private */,
-      13,    1,  104,    2, 0x08 /* Private */,
-      15,    1,  107,    2, 0x08 /* Private */,
-      17,    1,  110,    2, 0x08 /* Private */,
-      19,    0,  113,    2, 0x08 /* Private */,
+       5,    1,   93,    2, 0x08 /* Private */,
+       7,    1,   96,    2, 0x08 /* Private */,
+       9,    0,   99,    2, 0x08 /* Private */,
+      10,    0,  100,    2, 0x08 /* Private */,
+      11,    0,  101,    2, 0x08 /* Private */,
+      12,    0,  102,    2, 0x08 /* Private */,
+      13,    1,  103,    2, 0x08 /* Private */,
+      14,    1,  106,    2, 0x08 /* Private */,
+      16,    1,  109,    2, 0x08 /* Private */,
+      18,    1,  112,    2, 0x08 /* Private */,
+      20,    0,  115,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,    2,
@@ -101,16 +102,16 @@ static const uint qt_meta_data_Widget[] = {
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    6,
+    QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, QMetaType::QString,   14,
-    QMetaType::Void, QMetaType::QString,   16,
-    QMetaType::Void, QMetaType::QString,   18,
+    QMetaType::Void, QMetaType::QString,   15,
+    QMetaType::Void, QMetaType::QString,   17,
+    QMetaType::Void, QMetaType::QString,   19,
     QMetaType::Void,
 
        0        // eod
@@ -125,7 +126,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 0: _t->sig_presentMsg((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 1: _t->signal_newFriend((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 2: _t->echoData(); break;
-        case 3: _t->sendData(); break;
+        case 3: _t->sendData((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 4: _t->slot_loginInfo((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 5: _t->makeConnection(); break;
         case 6: _t->slot_createAccount(); break;

@@ -28,7 +28,7 @@ public:
      void afterLogin();
 private slots:
     void echoData( );
-    void sendData();
+    void sendData(QString curport);
     void slot_loginInfo(QString name);
     void makeConnection();
     void slot_createAccount();

@@ -51,7 +51,7 @@ QString ChatWidget::getText()
 void ChatWidget::on_pushButton_clicked()
 {
     //QString newMsg = ui->lineEdit->text();
-    emit signal_newMsg();
+    emit signal_newMsg(this->windowTitle());
 }
 
 

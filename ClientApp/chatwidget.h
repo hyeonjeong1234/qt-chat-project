@@ -24,7 +24,7 @@ private slots:
     void on_pushButton_2_clicked();
 
 signals:
-    void signal_newMsg();
+    void signal_newMsg(QString);
 private:
     Ui::ChatWidget *ui;
 };
