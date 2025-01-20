@@ -89,13 +89,61 @@ DataBasseThread::DataBasseThread(QObject *obj)
         }
 
         QSqlQuery query;
-        query.exec("CREATE TABLE IF NOT EXISTS client("
+       if(!query.exec("CREATE TABLE IF NOT EXISTS client("
                    "m_clientNum INTEGER, "
                    "m_clientId VARCHAR(20), "
                    "m_clientPw VARCHAR(20) NOT NULL, "
                    "m_clientName VARCHAR(20) NOT NULL, "
                    "m_clientPhoneNum VARCHAR(20) NOT NULL, "
-                   "m_clientAddress VARCHAR(20) NOT NULL);");
+                   "m_clientAddress VARCHAR(20) NOT NULL);"))
+       {
+               std::cerr << "Error creating Users table: "
+                         << query.lastError().text().toStdString() << std::endl;
+        }
+       // ChatRooms 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS ChatRooms ("
+                        "room_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        "room_name TEXT UNIQUE NOT NULL, "
+                        "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)")) {
+            std::cerr << "Error creating ChatRooms table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
+        // UserChatRooms 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS UserChatRooms ("
+                        "user_id INTEGER NOT NULL, "
+                        "room_id INTEGER NOT NULL, "
+                        "FOREIGN KEY(user_id) REFERENCES Users(id), "
+                        "FOREIGN KEY(room_id) REFERENCES ChatRooms(room_id), "
+                        "PRIMARY KEY(user_id, room_id))")) {
+            std::cerr << "Error creating UserChatRooms table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
+        // Friends 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS Friends ("
+                        "user_id INTEGER NOT NULL, "
+                        "friend_id INTEGER NOT NULL, "
+                        "FOREIGN KEY(user_id) REFERENCES Users(id), "
+                        "FOREIGN KEY(friend_id) REFERENCES Users(id), "
+                        "PRIMARY KEY(user_id, friend_id))")) {
+            std::cerr << "Error creating Friends table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
+        // Messages 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS Messages ("
+                        "message_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        "room_id INTEGER NOT NULL, "
+                        "sender_id INTEGER NOT NULL, "
+                        "message TEXT NOT NULL, "
+                        "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                        "FOREIGN KEY(room_id) REFERENCES ChatRooms(room_id), "
+                        "FOREIGN KEY(sender_id) REFERENCES Users(id))")) {
+            std::cerr << "Error creating Messages table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
 
         clientModel = new QSqlTableModel();
         clientModel->setTable("client");
