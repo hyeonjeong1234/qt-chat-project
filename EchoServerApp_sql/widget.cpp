@@ -42,6 +42,9 @@ Widget::Widget(QWidget *parent) : QWidget(parent)
     connect(this, SIGNAL(send_clientInfo(QString)),dbThread,SLOT(receive_clientInfo(QString)));
     connect(dbThread,SIGNAL(result_login(QTcpSocket*,QString)),this,SLOT(slot_login_check(QTcpSocket*,QString)));
     connect(this,SIGNAL(search_loginInfo(QTcpSocket*,QString,QString)),dbThread,SLOT(slot_search_loginInfo(QTcpSocket*,QString,QString)));
+    connect(this,SIGNAL(sig_get_friend(QString,QTcpSocket*)), dbThread,SLOT(get_friend_list(QString,QTcpSocket*)));
+    connect(dbThread,SIGNAL(return_friends(QList<QString>&,QTcpSocket*)),this,SLOT(slot_return_friends(QList<QString>&,QTcpSocket*)));
+    connect(this, SIGNAL(sig_add_new_friend(QString,QString)),dbThread,SLOT(slot_get_new_friend(QString,QString)));
 }
 
 void Widget::clientConnect( )
@@ -179,7 +182,10 @@ void Widget::echoData( )
 
            }
        }
-
+    }
+    else if(bytearray[0] == '5')
+    {
+        emit sig_add_new_friend(newMsg->getMsgSendCli(), newMsg->getMsgContext());
     }
     else
     {
@@ -196,6 +202,35 @@ void Widget::slot_login_check(QTcpSocket* sendSocket,QString result)
         //a.append(bytearray);
         //로그인하면 회원가입파일에서 아이디 찾아서 있으면 아이디 반환. 없으면 n반환 y반환했으면 curClient에 소켓이랑 아이디 저장
        sendSocket->write(a);
+        infoLabel->setText(QString(a));
+    }
+     if (sendSocket->waitForBytesWritten()) {
+    QTimer::singleShot(0, this, [this, sendSocket] {
+                   emit sig_get_friend(curruserList[sendSocket].toUtf8(), sendSocket);
+               });
+     }
+   //emit sig_get_friend(curruserList[sendSocket].toUtf8(),sendSocket);
+}
+void Widget::slot_return_friends(QList<QString>& friends,QTcpSocket* socket)
+{
+    QByteArray a = "";
+    if(friends.size() == 0||friends[0] == "\0")
+    {
+        //에러알림이나 그런거 띄우기 사이즈 0이면 친구없음 아니면 에러
+    }
+    else{
+        for(int i = 0; i<friends.size();i++)
+        {
+            if(i !=0||i == friends.size())
+                a.append(",");
+            a.append(friends[i].toUtf8());
+        }
+        QByteArray msg = "5,,friendsList,,";
+        a.insert(0,msg);
+        if(socket->write(a))
+            qDebug()<<"Success!!!!!!!1";
+        else
+            qDebug()<<"failㅠㅠㅠㅠㅠㅠㅠㅠㅠ";
         infoLabel->setText(QString(a));
     }
 }

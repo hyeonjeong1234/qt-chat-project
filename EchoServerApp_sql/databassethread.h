@@ -38,10 +38,13 @@ public:
 public slots:
     void process();
     void slot_search_loginInfo(QTcpSocket*,QString,QString);
+    void get_friend_list(QString userId,QTcpSocket*);
+    void slot_get_new_friend(QString,QString);
 signals:
     void finished();
     void error(QString err);
     void result_login(QTcpSocket*,QString);
+    void return_friends(QList<QString>&,QTcpSocket*);
 private slots:
     void receive_clientInfo(QString);
 

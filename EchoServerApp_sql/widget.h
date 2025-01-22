@@ -22,9 +22,12 @@ private slots:
     void echoData( );
     void clientDisconnect();
     void slot_login_check(QTcpSocket*,QString);
+    void slot_return_friends(QList<QString>&,QTcpSocket*);
 signals:
    void send_clientInfo(QString);
    void search_loginInfo(QTcpSocket*,QString,QString);
+   void sig_get_friend(QString,QTcpSocket*);
+   void sig_add_new_friend(QString,QString);
 private:
     QList<ClientItem*> clientInfoList;
     QLabel *infoLabel;

@@ -37,7 +37,6 @@ private:
     QString m_clientName;
     QString m_clientPhoneNum;
     QString m_clientAddress;
-
     QLabel* labelId;
     QLabel* labelPw;
     QLabel* labelName;
