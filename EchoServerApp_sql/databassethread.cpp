@@ -11,74 +11,6 @@
 
 DataBasseThread::DataBasseThread(QObject *obj)
 {
-//    int isData = 0;
-//    // 추가부분 시작
-//    QSqlDatabase clientDB = QSqlDatabase::addDatabase("QSQLITE"); // WINDOW에선 QODBC를 사용할 수 있지만, 일관적으로 제공하는 SQLLITE를 사용
-//    //clientDB.setDatabaseName("data.db"); // ":memory:" 으로 바꾸면 메모리에 저장하는데, 속도는 빠르지만, 파일에 저장은 안됨
-//    clientDB.setDatabaseName("exdata.db"); // ":memory:" 으로 바꾸면 메모리에 저장하는데, 속도는 빠르지만, 파일에 저장은 안됨
-
-//    if (!clientDB.open( )) cout << "fail" << endl;
-//    QSqlQuery query;
-//    query.exec("CREATE TABLE IF NOT EXISTS client(m_clientNum INTEGER, m_clientId VARCHAR(20), m_clientPw VARCHAR(20) NOT NULL, m_clientName VARCHAR(20) NOT NULL, m_clientPhoneNum VARCHAR(20) NOT NULL, m_clientAddress VARCHAR(20) NOT NULL);");
-//    //query.exec("CREATE TABLE IF NOT EXISTS client(num INTEGER, id VARCHAR(20) Primary Key, password VARCHAR(20) NOT NULL, name VARCHAR(20) NOT NULL, phoneNumber VARCHAR(20) NOT NULL, address VARCHAR(20) NOT NULL);");
-
-//    clientModel = new QSqlTableModel();
-
-//    //tableview = new QTableView(this);
-//    clientModel->setTable("client");
-//    clientModel->setEditStrategy(QSqlTableModel::OnFieldChange);
-//    clientModel->select();
-
-//    clientModel->setHeaderData(0, Qt::Horizontal, QObject::tr("m_clientNum"));
-//    clientModel->setHeaderData(1, Qt::Horizontal, QObject::tr("m_clientId"));
-//    clientModel->setHeaderData(2, Qt::Horizontal, QObject::tr("m_clientPw"));
-//    clientModel->setHeaderData(3, Qt::Horizontal, QObject::tr("m_clientName"));
-//    clientModel->setHeaderData(4, Qt::Horizontal, QObject::tr("m_clientPhoneNum"));
-//    clientModel->setHeaderData(5, Qt::Horizontal, QObject::tr("m_clientAddress"));
-
-////    /*
-//    if (clientModel->rowCount() == 2) {
-//        // 데이터가 없으면 샘플 데이터 추가
-//        std::cout << "데이터 샘플 추가" << std::endl;
-//        insertData(clientModel, 0, "clientId", "password", "name", "phone", "address");
-//        if (!clientModel->submitAll()) {
-//            cout << "Error adding sample data : " << clientModel->lastError().text().toStdString() << endl;
-//        }
-//        clientModel->select();
-//    }
-////    */
-//    //clientModel->select( );
-//    std::cout << "init rowCount : " << clientModel->rowCount() << std::endl;
-//    for (int row = 0; row < clientModel->rowCount(); row++) {
-//        int num = clientModel->data(clientModel->index(row, 0)).toInt();
-//        QString id = clientModel->data(clientModel->index(row, 1)).toString(); // ID
-//        QString password = clientModel->data(clientModel->index(row, 2)).toString(); // Password
-//        QString name = clientModel->data(clientModel->index(row, 3)).toString(); // Name
-//        QString phoneNumber = clientModel->data(clientModel->index(row, 4)).toString(); // Phone Number
-//        QString address = clientModel->data(clientModel->index(row, 5)).toString(); // Address
-//        std::cout << " row value : " << row << std::endl;
-//        //std::cout << "init rowCount : " << clientModel->rowCount() << std::endl;
-//        ClientItem* c = new ClientItem(num, id, password, name, phoneNumber, address);
-//        clientList.insert(id, c);
-//        std::cout << "address : /" << address.toStdString() << "id : /" << id.toStdString() << "password : /" << password.toStdString() << "/"  << std::endl;
-//        std::cout << "c.address : /" << c->getClientAddress().toStdString() << "c.id : /" << c->getClientId().toStdString() << "c.password : /" << c->getClientPw().toStdString() << "/"  << std::endl;
-//        isData = 1;
-//    }
-//    if (!clientModel->submitAll()) {
-//        cout << "Error first saving changes: " << clientModel->lastError().text().toStdString() << endl;
-//    }
-//    clientModel->select();
-//    if(isData != 0)
-//    {
-//        for (const auto& v : clientList) {
-//            ClientItem* c = v;
-//            std::cout << c->getClientNum() << ", ";
-//            std::cout << c->getClientId().toStdString() << ", " << c->getClientPw().toStdString() << ", ";
-//            std::cout << c->getClientName().toStdString() << ", " << c->getClientPhoneNum().toStdString() << ", ";
-//            std::cout << c->getClientAddress().toStdString() << std::endl;
-//        }
-//    }
-
         QSqlDatabase clientDB = QSqlDatabase::addDatabase("QSQLITE");
         clientDB.setDatabaseName("exdata.db");
 
@@ -89,13 +21,61 @@ DataBasseThread::DataBasseThread(QObject *obj)
         }
 
         QSqlQuery query;
-        query.exec("CREATE TABLE IF NOT EXISTS client("
+       if(!query.exec("CREATE TABLE IF NOT EXISTS client("
                    "m_clientNum INTEGER, "
                    "m_clientId VARCHAR(20), "
                    "m_clientPw VARCHAR(20) NOT NULL, "
                    "m_clientName VARCHAR(20) NOT NULL, "
                    "m_clientPhoneNum VARCHAR(20) NOT NULL, "
-                   "m_clientAddress VARCHAR(20) NOT NULL);");
+                   "m_clientAddress VARCHAR(20) NOT NULL);"))
+       {
+               std::cerr << "Error creating Users table: "
+                         << query.lastError().text().toStdString() << std::endl;
+        }
+       // ChatRooms 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS ChatRooms ("
+                        "room_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        "room_name TEXT UNIQUE NOT NULL, "
+                        "created_at DATETIME DEFAULT CURRENT_TIMESTAMP)")) {
+            std::cerr << "Error creating ChatRooms table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
+        // UserChatRooms 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS UserChatRooms ("
+                        "user_id INTEGER NOT NULL, "
+                        "room_id INTEGER NOT NULL, "
+                        "FOREIGN KEY(user_id) REFERENCES Users(id), "
+                        "FOREIGN KEY(room_id) REFERENCES ChatRooms(room_id), "
+                        "PRIMARY KEY(user_id, room_id))")) {
+            std::cerr << "Error creating UserChatRooms table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
+        // Friends 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS Friends ("
+                        "user_id INTEGER NOT NULL, "
+                        "friend_id INTEGER NOT NULL, "
+                        "FOREIGN KEY(user_id) REFERENCES Users(id), "
+                        "FOREIGN KEY(friend_id) REFERENCES Users(id), "
+                        "PRIMARY KEY(user_id, friend_id))")) {
+            std::cerr << "Error creating Friends table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
+        // Messages 테이블 생성
+        if (!query.exec("CREATE TABLE IF NOT EXISTS Messages ("
+                        "message_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        "room_id INTEGER NOT NULL, "
+                        "sender_id INTEGER NOT NULL, "
+                        "message TEXT NOT NULL, "
+                        "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, "
+                        "FOREIGN KEY(room_id) REFERENCES ChatRooms(room_id), "
+                        "FOREIGN KEY(sender_id) REFERENCES Users(id))")) {
+            std::cerr << "Error creating Messages table: "
+                      << query.lastError().text().toStdString() << std::endl;
+        }
+
 
         clientModel = new QSqlTableModel();
         clientModel->setTable("client");
@@ -446,9 +426,58 @@ void DataBasseThread::process() {
          emit result_login(sendSocket,"N");
      else
      {
-         if(clientList[id]->getClientPw() == pw)
+         if(clientList[id]->getClientPw() == pw){
             emit result_login(sendSocket,"Y");
+         }
          else
              emit result_login(sendSocket,"N");
      }
  }
+void DataBasseThread:: get_friend_list(QString userId ,QTcpSocket* socket)
+{
+    QSqlQuery query;
+    QList<QString> friends_list;
+        query.prepare(R"(
+            SELECT friend_id
+            FROM Friends
+            WHERE user_id = :user_id
+        )");
+        query.bindValue(":user_id", userId);
+
+        if (!query.exec()) {
+            qDebug("Error fetching friend list");
+            QList<QString> error {"\0"};
+            emit return_friends(error,socket);
+        }
+        while (query.next()) {
+             friends_list.append(query.value(0).toString());
+        }
+       emit return_friends(friends_list,socket);
+}
+void DataBasseThread::slot_get_new_friend(QString userId,QString friendId)
+{
+
+    QSqlQuery query;
+    query.prepare(R"(
+        INSERT INTO Friends (user_id, friend_id)
+        SELECT :user_id, :friend_id
+        WHERE NOT EXISTS (
+            SELECT 1 FROM Friends
+            WHERE user_id = :user_id AND friend_id = :friend_id
+        )
+    )");
+    query.bindValue(":user_id", userId);
+    query.bindValue(":friend_id", friendId);
+
+    if (!query.exec()) {
+        qDebug("Error adding friend: ");
+    }
+
+    // 변경된 행 수 확인
+    if (query.numRowsAffected() == 0) {
+        qDebug()<<QString("Friend already exists: User %1 and Friend %2").arg (userId).arg(friendId);
+    }
+
+    qDebug()<<QString("Friend added successfully: User ") << QString(userId)
+              << " added Friend " << QString(friendId);
+}
