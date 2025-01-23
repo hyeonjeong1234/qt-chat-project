@@ -67,6 +67,7 @@ void Widget::clientDisconnect()
     foreach(QTcpSocket * otherClient,socketList)
     {
         QByteArray bytearray("11,,,,[Notice] 회원이 퇴장 하셨습니다.");//마지막 사람 나갔을 때도 서버로 알림 보내기
+        bytearray.append("\r\n");
         otherClient->write(bytearray);
         infoLabel->setText(QString(bytearray));
 
@@ -77,8 +78,19 @@ void Widget::clientDisconnect()
 void Widget::echoData( )
 {
     QTcpSocket *clientConnection = (QTcpSocket *)sender( );
-    if (clientConnection->bytesAvailable( ) > BLOCK_SIZE) return;
-    QByteArray bytearray = clientConnection->read(BLOCK_SIZE);
+    QByteArray buffer;
+    buffer.append(clientConnection->readAll());
+    while (buffer.contains("\r\n")) { // 종료 문자가 있는 동안 반복
+           int endIndex = buffer.indexOf("\r\n"); // 메시지 끝 위치 찾기
+           QByteArray message = buffer.left(endIndex); // 메시지 추출
+           buffer.remove(0, endIndex + 2); // 처리한 메시지와 종료 문자 제거
+           qDebug()<<message;
+           msgProcess(clientConnection, message); // 메시지 처리
+       }
+
+}
+void Widget::msgProcess(QTcpSocket *clientConnection,QByteArray bytearray)
+{
     QString stringmsg = QString(bytearray);
     qDebug()<<bytearray;
      QList<QString> splitArray = stringmsg.split(',');
@@ -112,6 +124,7 @@ void Widget::echoData( )
             clientInfoList.append(newClientInfo);
             qDebug()<<newClientInfo->getClientName()<<","<<newClientInfo->getClientId()<<","<<newClientInfo->getClientPw()<<","<<newClientInfo->getClientPhoneNum()<<","<<newClientInfo->getClientAddress();
             QByteArray bytearray("0,,NEWCLI,"+splitClientInfo[1].toUtf8()+",Y");
+            bytearray.append("\r\n");
             clientConnection->write(bytearray);
             infoLabel->setText(QString(bytearray));
             //회원가입시 내용파일에 저장필요splitArray
@@ -129,8 +142,13 @@ void Widget::echoData( )
             if((otherClient!=clientConnection))
             {
                 if(splitport.indexOf(curruserList[otherClient].toUtf8())!=-1)
-                otherClient->write(a);
-                infoLabel->setText(QString(bytearray));
+                {
+                    a.append("\r\n");
+                    otherClient->write(a);
+                    infoLabel->setText(QString(bytearray));
+
+                }
+
             }
             else
                 continue;
@@ -150,6 +168,7 @@ void Widget::echoData( )
             str_result = "Y";
         }
         QByteArray a = "3,,Search,"+splitArray[3].toUtf8()+","+str_result+","+splitArray[4].toUtf8();
+        a.append("\r\n");
         clientConnection->write(a);
         infoLabel->setText(QString(bytearray));//-1이면 실패
 
@@ -176,6 +195,7 @@ void Widget::echoData( )
                if(check!=-1)
                {
                    QByteArray bytearray("10,,,,[Notice]"+people[check]+"님이 입장 하셨습니다.");
+                   bytearray.append("\r\n");
                    otherClient->write(bytearray);
                    infoLabel->setText(QString(bytearray));
                }
@@ -193,7 +213,6 @@ void Widget::echoData( )
     }
 }
 
-
 void Widget::slot_login_check(QTcpSocket* sendSocket,QString result)
 {
     if(result=="Y")
@@ -201,6 +220,7 @@ void Widget::slot_login_check(QTcpSocket* sendSocket,QString result)
         QByteArray a ="1,,LOGIN,"+curruserList[sendSocket].toUtf8()+",Y" ;
         //a.append(bytearray);
         //로그인하면 회원가입파일에서 아이디 찾아서 있으면 아이디 반환. 없으면 n반환 y반환했으면 curClient에 소켓이랑 아이디 저장
+        a.append("\r\n");
        sendSocket->write(a);
         infoLabel->setText(QString(a));
     }
@@ -227,6 +247,7 @@ void Widget::slot_return_friends(QList<QString>& friends,QTcpSocket* socket)
         }
         QByteArray msg = "5,,friendsList,,";
         a.insert(0,msg);
+        a.append("\r\n");
         if(socket->write(a))
             qDebug()<<"Success!!!!!!!1";
         else

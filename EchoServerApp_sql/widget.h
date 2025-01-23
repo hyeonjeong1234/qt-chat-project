@@ -40,6 +40,7 @@ private:
     //ClientManagerForm* m_clientManager;
     DataBasseThread * dbThread;
      Message* newMsg;
+     void msgProcess(QTcpSocket *clientConnection,QByteArray bytearray);
 };
 
 #endif // WIDGET_H
