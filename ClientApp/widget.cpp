@@ -108,13 +108,27 @@ Widget::~Widget()
 void Widget::echoData( )
 {
 
-    QTcpSocket *clientSocket = dynamic_cast<QTcpSocket *>(sender( ));
-    if (clientSocket->bytesAvailable( ) > BLOCK_SIZE) return;
-    QByteArray bytearray = clientSocket->read(BLOCK_SIZE);
+    QTcpSocket *clientConnection = (QTcpSocket *)sender( );
+    QByteArray buffer;
+    buffer.append(clientConnection->readAll());
+    while (buffer.contains("\r\n")) { // 종료 문자가 있는 동안 반복
+           int endIndex = buffer.indexOf("\r\n"); // 메시지 끝 위치 찾기
+           QByteArray message = buffer.left(endIndex); // 메시지 추출
+           buffer.remove(0, endIndex + 2); // 처리한 메시지와 종료 문자 제거
+           qDebug()<<message;
+           msgProcess(clientConnection, message); // 메시지 처리
+       }
+
+}
+
+void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
+{
+
     QStringList splitMessage = QString(bytearray).split(QLatin1Char(','));
     int splitSize = splitMessage.size();
     QList<QString> chatname = splitMessage[3].split(':');
     QString chatroom;
+    QString newPort;
     if(splitSize >4){
         newMessaage->setMsgType(splitMessage[0].toInt());
         newMessaage->setMsgNum(splitMessage[1].toInt());
@@ -249,7 +263,20 @@ void Widget::echoData( )
             after_search(splitMessage[5]);
 
         break;
+    case 5:
+        qDebug()<<"recevie friends list";
+        for(int i = 4;i<splitMessage.size();i++)
+        {
+            chatWidget = new ChatWidget();
+            newPort = myInfo->getMyId()+":"+splitMessage[i];
+            myInfo->addNewPort(splitMessage[i],newPort);
+            chatList->addchatroom(splitMessage[i]);
+            joinChatList.insert(splitMessage[i],chatWidget);
+            chatWidget->setWindowTitle(splitMessage[i]);
+            connect(joinChatList[splitMessage[i]],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
+        }
 
+        break;
     default:
         message->append(newMessaage->getMsgContext());
         QTextCursor cursor = message->textCursor();
@@ -259,7 +286,6 @@ void Widget::echoData( )
         message->setTextCursor(cursor);
         break;
     }
-
 }
 void Widget::afterLogin()
 {
@@ -282,6 +308,7 @@ void Widget::sendData(QString curport)
     if(str.length()) {
         QByteArray bytearray;
         bytearray = str.toUtf8();
+        bytearray.append("\r\n");
         clientSocket->write(bytearray);
     }
 }
@@ -293,6 +320,7 @@ void Widget::sendData(QString curport)
      if(str.length()) {
          QByteArray bytearray;
          bytearray = str.toUtf8();
+         bytearray.append("\r\n");
          clientSocket->write(bytearray);
      }
 
@@ -347,6 +375,7 @@ void Widget::recvClientInfo( QString newClientInfo)//회원가입정보 ,로 구
     if(str.length()) {
         QByteArray bytearray;
         bytearray = str.toUtf8();
+        bytearray.append("\r\n");
         clientSocket->write(bytearray);
     }
     //전송하고 회원 정보 저장되면 서버에서 ok띄워주기->로그인창 띄워서 로그인하기
@@ -363,6 +392,7 @@ void Widget::slot_click_chatroom(QString chatroom)
     if(str.length()) {
         QByteArray bytearray;
         bytearray = str.toUtf8();
+        bytearray.append("\r\n");
         clientSocket->write(bytearray);
     }
     //chatList->hide();
@@ -388,6 +418,7 @@ void Widget:: slot_click_search(QString search_Id)
     if(str.length()) {
         QByteArray bytearray;
         bytearray = str.toUtf8();
+        bytearray.append("\r\n");
         clientSocket->write(bytearray);
     }
 }
@@ -412,6 +443,13 @@ void Widget:: after_search(QString searchId)
             joinChatList.insert(searchId,chatWidget);
             chatWidget->setWindowTitle(searchId);
             connect(joinChatList[searchId],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
+            QString str = "5,,newFriend for add,"+myInfo->getMyId()+","+searchId;
+            if(str.length()) {
+                QByteArray bytearray;
+                bytearray = str.toUtf8();
+                bytearray.append("\r\n");
+                clientSocket->write(bytearray);
+            }
         }
         else
         {
@@ -450,6 +488,13 @@ void Widget::slot_newFriend(QString newFriend)
         myInfo->addNewPort(newFriend,newPort);
         chatList->addchatroom(newFriend);
         joinChatList.insert(newFriend,new_chatWidget);
+        QString str = "5,,newFriend for add,"+myInfo->getMyId()+","+newFriend;
+        if(str.length()) {
+            QByteArray bytearray;
+            bytearray = str.toUtf8();
+            bytearray.append("\r\n");
+            clientSocket->write(bytearray);
+        }
         new_chatWidget->setWindowTitle(newFriend);
         connect(joinChatList[newFriend],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
         joinChatList[newFriend]->show();
