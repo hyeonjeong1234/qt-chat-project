@@ -13,22 +13,31 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(116, 88, 80);</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>20</y>
-     <width>411</width>
+     <x>180</x>
+     <y>17</y>
+     <width>451</width>
      <height>61</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>24</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>36</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(214, 192, 175);
+background-color:transparent;
+font: 36pt &quot;BM JUA_TTF&quot;;</string>
    </property>
    <property name="text">
     <string>Create New Account</string>
@@ -41,18 +50,24 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>85</y>
-     <width>57</width>
+     <y>82</y>
+     <width>71</width>
      <height>23</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>18</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(214, 192, 175);
+background-color:transparent;
+font: 18pt &quot;BM JUA_TTF&quot;;</string>
    </property>
    <property name="text">
     <string>Name</string>
@@ -62,17 +77,29 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>114</y>
+     <y>111</y>
      <width>331</width>
-     <height>31</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);
+font: 20pt &quot;BM JUA_TTF&quot;;
+padding-left: 10px; padding-right: 10px;</string>
    </property>
    <property name="cursorMoveStyle">
     <enum>Qt::LogicalMoveStyle</enum>
@@ -82,89 +109,143 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>200</y>
+     <y>197</y>
      <width>331</width>
-     <height>31</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);
+font: 20pt &quot;BM JUA_TTF&quot;;
+padding-left: 10px; padding-right: 10px;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_3">
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>290</y>
+     <y>287</y>
      <width>331</width>
-     <height>31</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="autoFillBackground">
     <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);
+font: 20pt &quot;BM JUA_TTF&quot;;
+padding-left: 10px; padding-right: 10px;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_4">
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>380</y>
+     <y>377</y>
      <width>331</width>
-     <height>31</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);
+font: 20pt &quot;BM JUA_TTF&quot;;
+padding-left: 10px; padding-right: 10px;</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_5">
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>470</y>
+     <y>467</y>
      <width>331</width>
-     <height>31</height>
+     <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);
+font: 20pt &quot;BM JUA_TTF&quot;;
+padding-left: 10px; padding-right: 10px;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>170</y>
+     <y>167</y>
      <width>21</width>
      <height>23</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>18</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(214, 192, 175);
+background-color:transparent;
+font: 18pt &quot;BM JUA_TTF&quot;;</string>
    </property>
    <property name="text">
     <string>ID</string>
@@ -174,18 +255,24 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>260</y>
+     <y>257</y>
      <width>31</width>
      <height>23</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>18</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(214, 192, 175);
+background-color:transparent;
+font: 18pt &quot;BM JUA_TTF&quot;;</string>
    </property>
    <property name="text">
     <string>PW</string>
@@ -195,18 +282,24 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>350</y>
-     <width>156</width>
+     <y>347</y>
+     <width>171</width>
      <height>23</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>18</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(214, 192, 175);
+background-color:transparent;
+font: 18pt &quot;BM JUA_TTF&quot;;</string>
    </property>
    <property name="text">
     <string>PHONE NUMBER</string>
@@ -216,18 +309,24 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>440</y>
-     <width>92</width>
+     <y>437</y>
+     <width>121</width>
      <height>23</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>18</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(214, 192, 175);
+background-color:transparent;
+font: 18pt &quot;BM JUA_TTF&quot;;</string>
    </property>
    <property name="text">
     <string>ADDRESS</string>
@@ -237,18 +336,56 @@
    <property name="geometry">
     <rect>
      <x>459</x>
-     <y>530</y>
+     <y>537</y>
      <width>101</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>12</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
    </property>
    <property name="text">
     <string>Create</string>
@@ -258,21 +395,118 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>530</y>
+     <y>537</y>
      <width>101</width>
      <height>31</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>12</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
    </property>
    <property name="text">
     <string>Delete</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>810</x>
+     <y>180</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>13</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 13pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
+   </property>
+   <property name="text">
+    <string>NEW CHAT ROOM</string>
    </property>
   </widget>
  </widget>

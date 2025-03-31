@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(116, 88, 80);</string>
+  </property>
   <widget class="QLineEdit" name="lineEdit_3">
    <property name="geometry">
     <rect>
@@ -21,6 +24,22 @@
      <width>471</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);
+font: 20pt &quot;BM JUA_TTF&quot;;
+padding-left: 10px; padding-right: 10px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="dragEnabled">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
@@ -34,11 +53,49 @@
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
+     <family>BM JUA_TTF</family>
      <pointsize>16</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
    </property>
    <property name="text">
     <string>SEARCH</string>
@@ -61,13 +118,21 @@
      <bold>true</bold>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);</string>
+   </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>320</x>
      <y>20</y>
-     <width>151</width>
+     <width>141</width>
      <height>71</height>
     </rect>
    </property>
@@ -78,6 +143,10 @@
      <weight>75</weight>
      <bold>true</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(214, 192, 175);
+background-color:transparent;</string>
    </property>
    <property name="text">
     <string>Chat List</string>
@@ -94,11 +163,49 @@
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>12</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>13</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 13pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
    </property>
    <property name="text">
     <string>NEW CHAT ROOM</string>

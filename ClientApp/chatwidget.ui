@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>715</width>
+    <height>703</height>
    </rect>
   </property>
   <property name="font">
@@ -21,22 +21,63 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>520</y>
-     <width>80</width>
-     <height>51</height>
+     <x>594</x>
+     <y>622</y>
+     <width>81</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
    </property>
    <property name="text">
     <string>SEND</string>
@@ -45,37 +86,316 @@
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>520</y>
-     <width>541</width>
-     <height>51</height>
+     <x>37</x>
+     <y>611</y>
+     <width>521</width>
+     <height>61</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color: rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);
+
+padding-left: 10px; padding-right: 10px;</string>
+   </property>
+   <property name="placeholderText">
+    <string/>
    </property>
   </widget>
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>30</y>
-     <width>741</width>
-     <height>461</height>
+     <x>36</x>
+     <y>71</y>
+     <width>641</width>
+     <height>521</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>530</y>
-     <width>81</width>
+     <x>664</x>
+     <y>2</y>
+     <width>36</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>715</width>
      <height>41</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgba(170,170,170,255);
+background-color: rgb(197, 165, 142);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;</string>
+   </property>
    <property name="text">
-    <string>EXIT</string>
+    <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>715</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>24</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+color: rgb(116, 88, 80);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+padding-left: 147px; padding-right: 187px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="margin">
+    <number>0</number>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>616</x>
+     <y>2</y>
+     <width>36</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius:10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>568</x>
+     <y>2</y>
+     <width>36</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius:10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>label_2</zorder>
+  <zorder>label</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>lineEdit</zorder>
+  <zorder>textEdit</zorder>
+  <zorder>pushButton_2</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>pushButton_5</zorder>
  </widget>
+ <tabstops>
+  <tabstop>lineEdit</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>textEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -85,8 +405,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>68</x>
-     <y>536</y>
+     <x>620</x>
+     <y>60</y>
     </hint>
     <hint type="destinationlabel">
      <x>75</x>

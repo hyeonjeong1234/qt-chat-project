@@ -28,69 +28,159 @@ public:
     QLineEdit *PWEdit;
     QLabel *label;
     QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
 
     void setupUi(QWidget *LoginWidget)
     {
         if (LoginWidget->objectName().isEmpty())
             LoginWidget->setObjectName(QString::fromUtf8("LoginWidget"));
         LoginWidget->resize(800, 600);
+        LoginWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(116, 88, 80);"));
         label_2 = new QLabel(LoginWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(270, 210, 20, 22));
+        label_2->setGeometry(QRect(234, 242, 41, 31));
         QFont font;
-        font.setFamily(QString::fromUtf8("Ubuntu"));
-        font.setPointSize(14);
-        font.setBold(true);
-        font.setWeight(75);
+        font.setFamily(QString::fromUtf8("BM JUA_TTF"));
+        font.setPointSize(20);
+        font.setBold(false);
+        font.setItalic(false);
+        font.setWeight(50);
         label_2->setFont(font);
+        label_2->setStyleSheet(QString::fromUtf8("color: rgb(214, 192, 175);\n"
+"background-color:transparent;\n"
+"font: 20pt \"BM JUA_TTF\";"));
         pushButton = new QPushButton(LoginWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(360, 330, 80, 31));
+        pushButton->setGeometry(QRect(250, 400, 91, 41));
         QFont font1;
-        font1.setFamily(QString::fromUtf8("Ubuntu"));
-        font1.setPointSize(12);
-        font1.setBold(true);
-        font1.setWeight(75);
+        font1.setFamily(QString::fromUtf8("BM JUA_TTF"));
+        font1.setPointSize(16);
+        font1.setBold(false);
+        font1.setItalic(false);
+        font1.setWeight(50);
         pushButton->setFont(font1);
+        pushButton->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	font: 16pt \"BM JUA_TTF\";\n"
+"	background-color: rgb(197, 165, 142);\n"
+"	border: none;\n"
+"	border-radius: 10px;\n"
+"	\n"
+"	color: rgb(116, 88, 80);\n"
+"	\n"
+"    border-left: 3px solid rgb(214, 192, 175);\n"
+"	border-right: 3px solid rgb(214, 192, 175);\n"
+"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"	border-top: 3px solid rgb(214, 192, 175);\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(197, 165, 142);\n"
+"	\n"
+"	color: rgb(214, 192, 175);\n"
+"	\n"
+"    border-left: 3px solid rgb(214, 192, 175);\n"
+"	border-right: 3px solid rgb(214, 192, 175);\n"
+"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"	border-top: 3px solid rgb(214, 192, 175);\n"
+"\n"
+"}\n"
+"QPushButton:pressed{\n"
+"	color: rgb(214, 192, 175);\n"
+"	background-color:  rgb(116, 88, 80);\n"
+"	border-top: 3px solid rgb(214, 192, 175);\n"
+"	border-left: 3px solid rgb(214, 192, 175);\n"
+"	border-right: 3px solid rgb(214, 192, 175);\n"
+"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"\n"
+"}"));
         label_3 = new QLabel(LoginWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(260, 277, 41, 21));
+        label_3->setGeometry(QRect(234, 310, 51, 41));
         label_3->setFont(font);
+        label_3->setStyleSheet(QString::fromUtf8("color: rgb(214, 192, 175);\n"
+"background-color:transparent;\n"
+"font: 20pt \"BM JUA_TTF\";"));
         IDEdit = new QLineEdit(LoginWidget);
         IDEdit->setObjectName(QString::fromUtf8("IDEdit"));
-        IDEdit->setGeometry(QRect(300, 210, 211, 31));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Ubuntu"));
-        font2.setBold(true);
-        font2.setWeight(75);
-        IDEdit->setFont(font2);
+        IDEdit->setGeometry(QRect(284, 240, 311, 41));
+        IDEdit->setFont(font);
+        IDEdit->setStyleSheet(QString::fromUtf8("color: rgb(116, 88, 80);\n"
+"border-style: solid;\n"
+"border-width: 3px;\n"
+"border-color:rgb(214, 192, 175);\n"
+"border-radius: 7;\n"
+"background-color: rgb(197, 165, 142);\n"
+"font: 20pt \"BM JUA_TTF\";\n"
+"padding-left: 10px; padding-right: 10px;"));
         PWEdit = new QLineEdit(LoginWidget);
         PWEdit->setObjectName(QString::fromUtf8("PWEdit"));
-        PWEdit->setGeometry(QRect(300, 270, 211, 31));
-        PWEdit->setFont(font2);
+        PWEdit->setGeometry(QRect(284, 310, 311, 41));
+        PWEdit->setFont(font);
+        PWEdit->setStyleSheet(QString::fromUtf8("color: rgb(116, 88, 80);\n"
+"border-style: solid;\n"
+"border-width: 3px;\n"
+"border-color:rgb(214, 192, 175);\n"
+"border-radius: 7px;\n"
+"background-color: rgb(197, 165, 142);\n"
+"font: 20pt \"BM JUA_TTF\";\n"
+"padding-left: 10px; padding-right: 10px;"));
         PWEdit->setEchoMode(QLineEdit::Password);
         label = new QLabel(LoginWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(275, 130, 231, 51));
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("Ubuntu"));
-        font3.setPointSize(34);
-        font3.setBold(true);
-        font3.setWeight(75);
-        label->setFont(font3);
+        label->setGeometry(QRect(130, 150, 541, 51));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Ubuntu"));
+        font2.setPointSize(34);
+        font2.setBold(true);
+        font2.setWeight(75);
+        label->setFont(font2);
+        label->setStyleSheet(QString::fromUtf8("color: rgb(214, 192, 175);\n"
+"background-color:transparent;"));
         label->setAlignment(Qt::AlignCenter);
         pushButton_2 = new QPushButton(LoginWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(320, 390, 164, 31));
+        pushButton_2->setGeometry(QRect(370, 400, 211, 41));
         pushButton_2->setFont(font1);
-        pushButton_3 = new QPushButton(LoginWidget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(360, 450, 81, 31));
-        pushButton_3->setFont(font1);
+        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+"	font: 16pt \"BM JUA_TTF\";\n"
+"	background-color: rgb(197, 165, 142);\n"
+"	border: none;\n"
+"	border-radius: 10px;\n"
+"	\n"
+"	color: rgb(116, 88, 80);\n"
+"	\n"
+"    border-left: 3px solid rgb(214, 192, 175);\n"
+"	border-right: 3px solid rgb(214, 192, 175);\n"
+"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"	border-top: 3px solid rgb(214, 192, 175);\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background-color: rgb(197, 165, 142);\n"
+"	\n"
+"	color: rgb(214, 192, 175);\n"
+"	\n"
+"    border-left: 3px solid rgb(214, 192, 175);\n"
+"	border-right: 3px solid rgb(214, 192, 175);\n"
+"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"	border-top: 3px solid rgb(214, 192, 175);\n"
+"\n"
+"}\n"
+"QPushButton:pressed{\n"
+"	color: rgb(214, 192, 175);\n"
+"	background-color:  rgb(116, 88, 80);\n"
+"	border-top: 3px solid rgb(214, 192, 175);\n"
+"	border-left: 3px solid rgb(214, 192, 175);\n"
+"	border-right: 3px solid rgb(214, 192, 175);\n"
+"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"\n"
+"}"));
+        QWidget::setTabOrder(IDEdit, PWEdit);
+        QWidget::setTabOrder(PWEdit, pushButton);
+        QWidget::setTabOrder(pushButton, pushButton_2);
 
         retranslateUi(LoginWidget);
-        QObject::connect(pushButton_3, SIGNAL(clicked()), LoginWidget, SLOT(close()));
 
         QMetaObject::connectSlotsByName(LoginWidget);
     } // setupUi
@@ -102,9 +192,8 @@ public:
         pushButton->setText(QCoreApplication::translate("LoginWidget", "Sign In", nullptr));
         label_3->setText(QCoreApplication::translate("LoginWidget", "PW", nullptr));
         IDEdit->setText(QString());
-        label->setText(QCoreApplication::translate("LoginWidget", "WELCOME", nullptr));
+        label->setText(QCoreApplication::translate("LoginWidget", "HAPPY CHAT PROGRAM", nullptr));
         pushButton_2->setText(QCoreApplication::translate("LoginWidget", "Create New Account", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("LoginWidget", "Quit", nullptr));
     } // retranslateUi
 
 };
