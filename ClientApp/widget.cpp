@@ -273,6 +273,7 @@ void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
             chatList->addchatroom(splitMessage[i]);
             joinChatList.insert(splitMessage[i],chatWidget);
             chatWidget->setWindowTitle(splitMessage[i]);
+            chatWidget->setChatroomName(splitMessage[i]);
             connect(joinChatList[splitMessage[i]],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
         }
 
@@ -442,6 +443,7 @@ void Widget:: after_search(QString searchId)
             chatList->addchatroom(searchId);
             joinChatList.insert(searchId,chatWidget);
             chatWidget->setWindowTitle(searchId);
+            chatWidget->setChatroomName(searchId);
             connect(joinChatList[searchId],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
             QString str = "5,,newFriend for add,"+myInfo->getMyId()+","+searchId;
             if(str.length()) {
@@ -496,6 +498,7 @@ void Widget::slot_newFriend(QString newFriend)
             clientSocket->write(bytearray);
         }
         new_chatWidget->setWindowTitle(newFriend);
+        new_chatWidget->setChatroomName(newFriend);
         connect(joinChatList[newFriend],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
         joinChatList[newFriend]->show();
         myInfo->currentPort = newPort;
