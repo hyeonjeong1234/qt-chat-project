@@ -30,8 +30,9 @@ To get started, clone the repository to your local machine:
 ```bash
 git clone https://github.com/hyeonjeong1234/qt-chat-app.git
 cd qt-chat-app
-
+```
 ### Download Fonts
 Download the fonts I used in this project for free.
 ```bash
 https://gongu.copyright.or.kr/gongu/wrt/wrt/view.do?wrtSn=13288252&menuNo=200023
+```
