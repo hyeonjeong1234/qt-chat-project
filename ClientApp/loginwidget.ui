@@ -19,7 +19,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>234</x>
+     <x>219</x>
      <y>242</y>
      <width>41</width>
      <height>31</height>
@@ -46,7 +46,7 @@ font: 20pt &quot;BM JUA_TTF&quot;;</string>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>250</x>
+     <x>235</x>
      <y>400</y>
      <width>91</width>
      <height>41</height>
@@ -105,7 +105,7 @@ QPushButton:pressed{
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>234</x>
+     <x>219</x>
      <y>310</y>
      <width>51</width>
      <height>41</height>
@@ -132,7 +132,7 @@ font: 20pt &quot;BM JUA_TTF&quot;;</string>
   <widget class="QLineEdit" name="IDEdit">
    <property name="geometry">
     <rect>
-     <x>284</x>
+     <x>269</x>
      <y>240</y>
      <width>311</width>
      <height>41</height>
@@ -164,7 +164,7 @@ padding-left: 10px; padding-right: 10px;</string>
   <widget class="QLineEdit" name="PWEdit">
    <property name="geometry">
     <rect>
-     <x>284</x>
+     <x>269</x>
      <y>310</y>
      <width>311</width>
      <height>41</height>
@@ -172,9 +172,9 @@ padding-left: 10px; padding-right: 10px;</string>
    </property>
    <property name="font">
     <font>
-     <family>BM JUA_TTF</family>
+     <family>Ubuntu</family>
      <pointsize>20</pointsize>
-     <weight>50</weight>
+     <weight>7</weight>
      <italic>false</italic>
      <bold>false</bold>
     </font>
@@ -186,8 +186,17 @@ border-width: 3px;
 border-color:rgb(214, 192, 175);
 border-radius: 7px;
 background-color: rgb(197, 165, 142);
-font: 20pt &quot;BM JUA_TTF&quot;;
+font: 57 20pt &quot;Ubuntu&quot;;
 padding-left: 10px; padding-right: 10px;</string>
+   </property>
+   <property name="inputMask">
+    <string/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="maxLength">
+    <number>32767</number>
    </property>
    <property name="echoMode">
     <enum>QLineEdit::Password</enum>
@@ -224,7 +233,7 @@ background-color:transparent;</string>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>355</x>
      <y>400</y>
      <width>211</width>
      <height>41</height>

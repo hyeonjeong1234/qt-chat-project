@@ -37,7 +37,7 @@ public:
         LoginWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(116, 88, 80);"));
         label_2 = new QLabel(LoginWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(234, 242, 41, 31));
+        label_2->setGeometry(QRect(219, 242, 41, 31));
         QFont font;
         font.setFamily(QString::fromUtf8("BM JUA_TTF"));
         font.setPointSize(20);
@@ -50,7 +50,7 @@ public:
 "font: 20pt \"BM JUA_TTF\";"));
         pushButton = new QPushButton(LoginWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(250, 400, 91, 41));
+        pushButton->setGeometry(QRect(235, 400, 91, 41));
         QFont font1;
         font1.setFamily(QString::fromUtf8("BM JUA_TTF"));
         font1.setPointSize(16);
@@ -95,14 +95,14 @@ public:
 "}"));
         label_3 = new QLabel(LoginWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(234, 310, 51, 41));
+        label_3->setGeometry(QRect(219, 310, 51, 41));
         label_3->setFont(font);
         label_3->setStyleSheet(QString::fromUtf8("color: rgb(214, 192, 175);\n"
 "background-color:transparent;\n"
 "font: 20pt \"BM JUA_TTF\";"));
         IDEdit = new QLineEdit(LoginWidget);
         IDEdit->setObjectName(QString::fromUtf8("IDEdit"));
-        IDEdit->setGeometry(QRect(284, 240, 311, 41));
+        IDEdit->setGeometry(QRect(269, 240, 311, 41));
         IDEdit->setFont(font);
         IDEdit->setStyleSheet(QString::fromUtf8("color: rgb(116, 88, 80);\n"
 "border-style: solid;\n"
@@ -114,32 +114,39 @@ public:
 "padding-left: 10px; padding-right: 10px;"));
         PWEdit = new QLineEdit(LoginWidget);
         PWEdit->setObjectName(QString::fromUtf8("PWEdit"));
-        PWEdit->setGeometry(QRect(284, 310, 311, 41));
-        PWEdit->setFont(font);
+        PWEdit->setGeometry(QRect(269, 310, 311, 41));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Ubuntu"));
+        font2.setPointSize(20);
+        font2.setBold(false);
+        font2.setItalic(false);
+        font2.setWeight(7);
+        PWEdit->setFont(font2);
         PWEdit->setStyleSheet(QString::fromUtf8("color: rgb(116, 88, 80);\n"
 "border-style: solid;\n"
 "border-width: 3px;\n"
 "border-color:rgb(214, 192, 175);\n"
 "border-radius: 7px;\n"
 "background-color: rgb(197, 165, 142);\n"
-"font: 20pt \"BM JUA_TTF\";\n"
+"font: 57 20pt \"Ubuntu\";\n"
 "padding-left: 10px; padding-right: 10px;"));
+        PWEdit->setMaxLength(32767);
         PWEdit->setEchoMode(QLineEdit::Password);
         label = new QLabel(LoginWidget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(130, 150, 541, 51));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Ubuntu"));
-        font2.setPointSize(34);
-        font2.setBold(true);
-        font2.setWeight(75);
-        label->setFont(font2);
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Ubuntu"));
+        font3.setPointSize(34);
+        font3.setBold(true);
+        font3.setWeight(75);
+        label->setFont(font3);
         label->setStyleSheet(QString::fromUtf8("color: rgb(214, 192, 175);\n"
 "background-color:transparent;"));
         label->setAlignment(Qt::AlignCenter);
         pushButton_2 = new QPushButton(LoginWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(370, 400, 211, 41));
+        pushButton_2->setGeometry(QRect(355, 400, 211, 41));
         pushButton_2->setFont(font1);
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -192,6 +199,8 @@ public:
         pushButton->setText(QCoreApplication::translate("LoginWidget", "Sign In", nullptr));
         label_3->setText(QCoreApplication::translate("LoginWidget", "PW", nullptr));
         IDEdit->setText(QString());
+        PWEdit->setInputMask(QString());
+        PWEdit->setText(QString());
         label->setText(QCoreApplication::translate("LoginWidget", "HAPPY CHAT PROGRAM", nullptr));
         pushButton_2->setText(QCoreApplication::translate("LoginWidget", "Create New Account", nullptr));
     } // retranslateUi

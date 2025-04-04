@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
@@ -23,13 +22,13 @@ class Ui_ChatWidget
 {
 public:
     QPushButton *pushButton;
-    QLineEdit *lineEdit;
     QTextEdit *textEdit;
     QPushButton *pushButton_2;
     QLabel *label;
     QLabel *label_2;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
+    QTextEdit *textEdit_2;
 
     void setupUi(QWidget *ChatWidget)
     {
@@ -88,32 +87,15 @@ public:
 "	border-bottom: 3px solid rgb(214, 192, 175);\n"
 "\n"
 "}"));
-        lineEdit = new QLineEdit(ChatWidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(37, 611, 521, 61));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("BM JUA_TTF"));
-        font2.setPointSize(14);
-        font2.setBold(true);
-        font2.setWeight(75);
-        lineEdit->setFont(font2);
-        lineEdit->setStyleSheet(QString::fromUtf8("color: rgb(116, 88, 80);\n"
-"border-style: solid;\n"
-"border-width: 3px;\n"
-"border-color: rgb(214, 192, 175);\n"
-"border-radius: 10;\n"
-"background-color: rgb(197, 165, 142);\n"
-"\n"
-"padding-left: 10px; padding-right: 10px;"));
         textEdit = new QTextEdit(ChatWidget);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(36, 71, 641, 521));
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("BM JUA_TTF"));
-        font3.setPointSize(16);
-        font3.setBold(false);
-        font3.setWeight(50);
-        textEdit->setFont(font3);
+        textEdit->setGeometry(QRect(36, 131, 641, 461));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("BM JUA_TTF"));
+        font2.setPointSize(16);
+        font2.setBold(false);
+        font2.setWeight(50);
+        textEdit->setFont(font2);
         textEdit->setStyleSheet(QString::fromUtf8("color: rgb(116, 88, 80);\n"
 "border-style: solid;\n"
 "border-width: 3px;\n"
@@ -163,26 +145,29 @@ public:
         label = new QLabel(ChatWidget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(0, 0, 715, 41));
-        label->setFont(font2);
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("BM JUA_TTF"));
+        font3.setPointSize(14);
+        font3.setBold(true);
+        font3.setWeight(75);
+        label->setFont(font3);
         label->setStyleSheet(QString::fromUtf8("color:rgba(170,170,170,255);\n"
 "background-color: rgb(197, 165, 142);\n"
 "border-top-left-radius: 10px;\n"
 "border-top-right-radius: 10px;"));
         label_2 = new QLabel(ChatWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(0, 0, 715, 41));
+        label_2->setGeometry(QRect(0, 40, 715, 71));
         QFont font4;
         font4.setFamily(QString::fromUtf8("BM JUA_TTF"));
         font4.setPointSize(24);
         font4.setBold(false);
         font4.setWeight(50);
         label_2->setFont(font4);
-        label_2->setStyleSheet(QString::fromUtf8("background-color: transparent;\n"
-"color: rgb(116, 88, 80);\n"
-"border-top-left-radius: 10px;\n"
-"border-top-right-radius: 10px;\n"
-"padding-left: 147px; padding-right: 187px;"));
-        label_2->setAlignment(Qt::AlignCenter);
+        label_2->setStyleSheet(QString::fromUtf8("background-color: rgb(225, 199, 181);\n"
+"color:rgb(116, 88, 80);\n"
+"padding-left: 50px; padding-right: 50px;"));
+        label_2->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         label_2->setMargin(0);
         pushButton_4 = new QPushButton(ChatWidget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
@@ -262,15 +247,32 @@ public:
 "	border-bottom: 3px solid rgb(214, 192, 175);\n"
 "\n"
 "}"));
+        textEdit_2 = new QTextEdit(ChatWidget);
+        textEdit_2->setObjectName(QString::fromUtf8("textEdit_2"));
+        textEdit_2->setGeometry(QRect(37, 611, 541, 59));
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("BM JUA_TTF"));
+        font5.setPointSize(18);
+        font5.setBold(false);
+        font5.setItalic(false);
+        font5.setWeight(50);
+        textEdit_2->setFont(font5);
+        textEdit_2->setStyleSheet(QString::fromUtf8("color: rgb(116, 88, 80);\n"
+"font: 18pt \"BM JUA_TTF\";\n"
+"border-style: solid;\n"
+"border-width: 3px;\n"
+"border-color:rgb(214, 192, 175);\n"
+"border-radius: 10;\n"
+"background-color: rgb(197, 165, 142);"));
+        textEdit_2->setReadOnly(false);
         label_2->raise();
         label->raise();
         pushButton->raise();
-        lineEdit->raise();
         textEdit->raise();
         pushButton_2->raise();
         pushButton_4->raise();
         pushButton_5->raise();
-        QWidget::setTabOrder(lineEdit, pushButton);
+        textEdit_2->raise();
         QWidget::setTabOrder(pushButton, pushButton_2);
         QWidget::setTabOrder(pushButton_2, textEdit);
 
@@ -284,12 +286,16 @@ public:
     {
         ChatWidget->setWindowTitle(QCoreApplication::translate("ChatWidget", "Form", nullptr));
         pushButton->setText(QCoreApplication::translate("ChatWidget", "SEND", nullptr));
-        lineEdit->setPlaceholderText(QString());
         pushButton_2->setText(QString());
         label->setText(QString());
-        label_2->setText(QString());
+        label_2->setText(QCoreApplication::translate("ChatWidget", "hhhhhhHHH", nullptr));
         pushButton_4->setText(QString());
         pushButton_5->setText(QString());
+        textEdit_2->setHtml(QCoreApplication::translate("ChatWidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'BM JUA_TTF'; font-size:18pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
     } // retranslateUi
 
 };
