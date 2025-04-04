@@ -48,7 +48,7 @@ void CreateAccountWidget::on_pushButton_clicked()
    newClientInfo.append(",");
    newClientInfo.append(ui->lineEdit_5->text());
    emit sendClientInfo(newClientInfo);
-   qDebug()<<newClientInfo;
+   qDebug()<<"Push create : "+newClientInfo;
    ui->lineEdit->setText("");
    ui->lineEdit_2->setText("");
    ui->lineEdit_3->setText("");

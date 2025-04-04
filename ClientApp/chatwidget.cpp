@@ -3,7 +3,7 @@
 
 #include <QPainter>
 #include <QPaintEvent>
-
+#include <QDebug>
 ChatWidget::ChatWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ChatWidget)
@@ -48,13 +48,15 @@ void ChatWidget::setText(QString sendCli,QString sendMsg)
 }
 QString ChatWidget::getText()
 {
-    QString msg = ui->lineEdit->text();
-    ui->lineEdit->setText("");
+    QString msg;
+    msg = ui->textEdit_2->toPlainText();
+    qDebug()<< msg;
+    ui->textEdit_2->setText("");
     return msg;
 }
 void ChatWidget::on_pushButton_clicked()
 {
-    //QString newMsg = ui->lineEdit->text();
+    //QString newMsg = ui->textEdit->text();
     emit signal_newMsg(this->windowTitle());
 }
 
