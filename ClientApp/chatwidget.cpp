@@ -3,7 +3,7 @@
 
 #include <QPainter>
 #include <QPaintEvent>
-
+#include <QDebug>
 ChatWidget::ChatWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ChatWidget)
@@ -17,11 +17,11 @@ ChatWidget::~ChatWidget()
 {
     delete ui;
 }
-void ChatWidget::setText(QString sendCli,QString sendMsg)
+void ChatWidget::setText(QString sendCli,QString sendMsg)//바꿀필요있을듯!!!!!!!!!!1
 {
     QList<QString> checkme = sendMsg.split(':');
     QString msg;
-    for(int i = 1; i<checkme.length();i++)
+    for(int i = 1; i<checkme.length();i++)//이거 반복하면 꽤 오래 걸듯
     {
         msg += checkme[i];
     }
@@ -48,13 +48,15 @@ void ChatWidget::setText(QString sendCli,QString sendMsg)
 }
 QString ChatWidget::getText()
 {
-    QString msg = ui->lineEdit->text();
-    ui->lineEdit->setText("");
+    QString msg;
+    msg = ui->textEdit_2->toPlainText();
+    qDebug()<< msg;
+    ui->textEdit_2->setText("");
     return msg;
 }
 void ChatWidget::on_pushButton_clicked()
 {
-    //QString newMsg = ui->lineEdit->text();
+    //QString newMsg = ui->textEdit->text();
     emit signal_newMsg(this->windowTitle());
 }
 

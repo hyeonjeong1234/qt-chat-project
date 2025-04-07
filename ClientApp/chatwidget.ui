@@ -83,44 +83,13 @@ QPushButton:pressed{
     <string>SEND</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>37</x>
-     <y>611</y>
-     <width>521</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>BM JUA_TTF</family>
-     <pointsize>14</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(116, 88, 80);
-border-style: solid;
-border-width: 3px;
-border-color: rgb(214, 192, 175);
-border-radius: 10;
-background-color: rgb(197, 165, 142);
-
-padding-left: 10px; padding-right: 10px;</string>
-   </property>
-   <property name="placeholderText">
-    <string/>
-   </property>
-  </widget>
   <widget class="QTextEdit" name="textEdit">
    <property name="geometry">
     <rect>
      <x>36</x>
-     <y>71</y>
+     <y>131</y>
      <width>641</width>
-     <height>521</height>
+     <height>461</height>
     </rect>
    </property>
    <property name="font">
@@ -146,10 +115,10 @@ background-color: rgb(197, 165, 142);</string>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>664</x>
-     <y>2</y>
-     <width>36</width>
-     <height>36</height>
+     <x>670</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
@@ -233,9 +202,9 @@ border-top-right-radius: 10px;</string>
    <property name="geometry">
     <rect>
      <x>0</x>
-     <y>0</y>
+     <y>40</y>
      <width>715</width>
-     <height>41</height>
+     <height>71</height>
     </rect>
    </property>
    <property name="font">
@@ -247,17 +216,15 @@ border-top-right-radius: 10px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: transparent;
-color: rgb(116, 88, 80);
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-padding-left: 147px; padding-right: 187px;</string>
+    <string notr="true">background-color: rgb(225, 199, 181);
+color:rgb(116, 88, 80);
+padding-left: 50px; padding-right: 50px;</string>
    </property>
    <property name="text">
-    <string/>
+    <string>hhhhhhHHH</string>
    </property>
    <property name="alignment">
-    <set>Qt::AlignCenter</set>
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
    </property>
    <property name="margin">
     <number>0</number>
@@ -266,10 +233,10 @@ padding-left: 147px; padding-right: 187px;</string>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>616</x>
-     <y>2</y>
-     <width>36</width>
-     <height>36</height>
+     <x>622</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
@@ -325,10 +292,10 @@ QPushButton:pressed{
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>568</x>
-     <y>2</y>
-     <width>36</width>
-     <height>36</height>
+     <x>574</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
@@ -381,17 +348,54 @@ QPushButton:pressed{
     <string/>
    </property>
   </widget>
+  <widget class="QTextEdit" name="textEdit_2">
+   <property name="geometry">
+    <rect>
+     <x>37</x>
+     <y>611</y>
+     <width>541</width>
+     <height>59</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>18</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(116, 88, 80);
+font: 18pt &quot;BM JUA_TTF&quot;;
+border-style: solid;
+border-width: 3px;
+border-color:rgb(214, 192, 175);
+border-radius: 10;
+background-color: rgb(197, 165, 142);</string>
+   </property>
+   <property name="readOnly">
+    <bool>false</bool>
+   </property>
+   <property name="html">
+    <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'BM JUA_TTF'; font-size:18pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
   <zorder>label_2</zorder>
   <zorder>label</zorder>
   <zorder>pushButton</zorder>
-  <zorder>lineEdit</zorder>
   <zorder>textEdit</zorder>
   <zorder>pushButton_2</zorder>
   <zorder>pushButton_4</zorder>
   <zorder>pushButton_5</zorder>
+  <zorder>textEdit_2</zorder>
  </widget>
  <tabstops>
-  <tabstop>lineEdit</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>pushButton_2</tabstop>
   <tabstop>textEdit</tabstop>
@@ -401,16 +405,16 @@ QPushButton:pressed{
   <connection>
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
-   <receiver>textEdit</receiver>
-   <slot>clear()</slot>
+   <receiver>ChatWidget</receiver>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>620</x>
-     <y>60</y>
+     <x>680</x>
+     <y>17</y>
     </hint>
     <hint type="destinationlabel">
-     <x>75</x>
-     <y>367</y>
+     <x>695</x>
+     <y>136</y>
     </hint>
    </hints>
   </connection>

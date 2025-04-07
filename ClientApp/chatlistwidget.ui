@@ -7,20 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>641</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(116, 88, 80);</string>
+   <string notr="true">background-color: transparent;</string>
   </property>
   <widget class="QLineEdit" name="lineEdit_3">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>100</y>
+     <y>136</y>
      <width>471</width>
      <height>51</height>
     </rect>
@@ -46,7 +46,7 @@ padding-left: 10px; padding-right: 10px;</string>
    <property name="geometry">
     <rect>
      <x>510</x>
-     <y>100</y>
+     <y>136</y>
      <width>101</width>
      <height>51</height>
     </rect>
@@ -101,37 +101,11 @@ QPushButton:pressed{
     <string>SEARCH</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="listWidget">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>180</y>
-     <width>761</width>
-     <height>391</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>Ubuntu</family>
-     <pointsize>20</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(116, 88, 80);
-border-style: solid;
-border-width: 3px;
-border-color:rgb(214, 192, 175);
-border-radius: 10;
-background-color: rgb(197, 165, 142);</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>20</y>
+     <y>56</y>
      <width>141</width>
      <height>71</height>
     </rect>
@@ -156,7 +130,7 @@ background-color:transparent;</string>
    <property name="geometry">
     <rect>
      <x>630</x>
-     <y>100</y>
+     <y>136</y>
      <width>151</width>
      <height>51</height>
     </rect>
@@ -211,7 +185,305 @@ QPushButton:pressed{
     <string>NEW CHAT ROOM</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_5">
+   <property name="geometry">
+    <rect>
+     <x>659</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius:10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_4">
+   <property name="geometry">
+    <rect>
+     <x>707</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius:10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:rgba(170,170,170,255);
+background-color: rgb(197, 165, 142);
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>755</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	font: 16pt &quot;BM JUA_TTF&quot;;
+	background-color: rgb(197, 165, 142);
+	border: none;
+	border-radius: 10px;
+	
+	color: rgb(116, 88, 80);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+
+QPushButton:hover{
+	background-color: rgb(197, 165, 142);
+	
+	color: rgb(214, 192, 175);
+	
+    border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+	border-top: 3px solid rgb(214, 192, 175);
+
+}
+QPushButton:pressed{
+	color: rgb(214, 192, 175);
+	background-color:  rgb(116, 88, 80);
+	border-top: 3px solid rgb(214, 192, 175);
+	border-left: 3px solid rgb(214, 192, 175);
+	border-right: 3px solid rgb(214, 192, 175);
+	border-bottom: 3px solid rgb(214, 192, 175);
+
+}</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>213</y>
+     <width>761</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>BM JUA_TTF</family>
+     <pointsize>24</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QListView {
+    color: rgb(116, 88, 80);
+	border-style: solid;
+	border-width: 3px;
+	border-color:rgb(214, 192, 175);
+	border-radius: 10;
+	background-color: rgb(197, 165, 142);
+ 	show-decoration-selected: 1; 
+	
+}
+
+QListView::item:alternate {
+   
+	    color:rgb(214, 192, 175);
+	background-color:rgb(255, 0, 0);
+border-width: 3px;
+	border-color:rgb(172, 137, 116);
+	border-radius: 5;
+}
+
+QListView::item:selected {
+    color:rgb(214, 192, 175);
+	background-color:rgb(255, 162, 0);
+	border-radius: 10px;
+}
+
+QListView::item:selected:!active {
+	  color:rgb(214, 192, 175);
+	background-color:rgb(116, 88, 80);
+border-width: 3px;
+	border-color:rgb(214, 192, 175);
+	border-radius: 5;
+}
+
+QListView::item:selected:active {
+    color:rgb(116, 88, 80);
+	background-color:rgb(214, 192, 175);
+border-width: 3px;
+	border-color:rgb(172, 137, 116);
+	border-radius: 5;
+
+}
+
+QListView::item:hover {
+    color: rgb(214, 192, 175);
+	background-color: transparent;
+	border-width: 3px;
+	border-color:rgb(172, 137, 116);
+	border-radius: 5;
+}</string>
+   </property>
+  </widget>
+  <zorder>label_2</zorder>
+  <zorder>lineEdit_3</zorder>
+  <zorder>pushButton_3</zorder>
+  <zorder>label</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>pushButton_5</zorder>
+  <zorder>pushButton_4</zorder>
+  <zorder>pushButton_2</zorder>
+  <zorder>listWidget</zorder>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>ChatListWidget</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>762</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>772</x>
+     <y>64</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
