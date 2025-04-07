@@ -17,11 +17,11 @@ ChatWidget::~ChatWidget()
 {
     delete ui;
 }
-void ChatWidget::setText(QString sendCli,QString sendMsg)
+void ChatWidget::setText(QString sendCli,QString sendMsg)//바꿀필요있을듯!!!!!!!!!!1
 {
     QList<QString> checkme = sendMsg.split(':');
     QString msg;
-    for(int i = 1; i<checkme.length();i++)
+    for(int i = 1; i<checkme.length();i++)//이거 반복하면 꽤 오래 걸듯
     {
         msg += checkme[i];
     }

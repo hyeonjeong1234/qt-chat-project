@@ -105,7 +105,7 @@ public:
         textEdit->setReadOnly(true);
         pushButton_2 = new QPushButton(ChatWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(664, 2, 36, 36));
+        pushButton_2->setGeometry(QRect(670, 4, 32, 32));
         pushButton_2->setFont(font1);
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -171,7 +171,7 @@ public:
         label_2->setMargin(0);
         pushButton_4 = new QPushButton(ChatWidget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(616, 2, 36, 36));
+        pushButton_4->setGeometry(QRect(622, 4, 32, 32));
         pushButton_4->setFont(font1);
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -210,7 +210,7 @@ public:
 "}"));
         pushButton_5 = new QPushButton(ChatWidget);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(568, 2, 36, 36));
+        pushButton_5->setGeometry(QRect(574, 4, 32, 32));
         pushButton_5->setFont(font1);
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -277,7 +277,7 @@ public:
         QWidget::setTabOrder(pushButton_2, textEdit);
 
         retranslateUi(ChatWidget);
-        QObject::connect(pushButton_2, SIGNAL(clicked()), textEdit, SLOT(clear()));
+        QObject::connect(pushButton_2, SIGNAL(clicked()), ChatWidget, SLOT(close()));
 
         QMetaObject::connectSlotsByName(ChatWidget);
     } // setupUi

@@ -59,7 +59,7 @@ private:
     ChatWidget *chatWidget;
     QMap<QString, ChatWidget *> joinChatList;
     SearchId* makeGroupChat;
-    void msgProcess(QTcpSocket *clientConnection,  QByteArray message);
+    void msgProcess(QTcpSocket *clientConnection,  QJsonObject json);
 
 
 };

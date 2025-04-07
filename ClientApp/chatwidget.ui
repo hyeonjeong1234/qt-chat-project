@@ -115,10 +115,10 @@ background-color: rgb(197, 165, 142);</string>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>664</x>
-     <y>2</y>
-     <width>36</width>
-     <height>36</height>
+     <x>670</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
@@ -233,10 +233,10 @@ padding-left: 50px; padding-right: 50px;</string>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>616</x>
-     <y>2</y>
-     <width>36</width>
-     <height>36</height>
+     <x>622</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
@@ -292,10 +292,10 @@ QPushButton:pressed{
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>568</x>
-     <y>2</y>
-     <width>36</width>
-     <height>36</height>
+     <x>574</x>
+     <y>4</y>
+     <width>32</width>
+     <height>32</height>
     </rect>
    </property>
    <property name="font">
@@ -405,16 +405,16 @@ p, li { white-space: pre-wrap; }
   <connection>
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
-   <receiver>textEdit</receiver>
-   <slot>clear()</slot>
+   <receiver>ChatWidget</receiver>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>620</x>
-     <y>60</y>
+     <x>680</x>
+     <y>17</y>
     </hint>
     <hint type="destinationlabel">
-     <x>75</x>
-     <y>367</y>
+     <x>695</x>
+     <y>136</y>
     </hint>
    </hints>
   </connection>

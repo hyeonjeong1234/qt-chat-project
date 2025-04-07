@@ -113,63 +113,84 @@ Widget::~Widget()
 
 void Widget::echoData( )
 {
-
-    QTcpSocket *clientConnection = (QTcpSocket *)sender( );
+    QTcpSocket *clientConnection = (QTcpSocket *)sender();
     QByteArray buffer;
     buffer.append(clientConnection->readAll());
-    while (buffer.size() >= 4) {  // 최소 4바이트(길이 정보)가 있어야 함
-          bool ok;
-          int jsonLength = buffer.left(4).toInt(&ok);
-          if (!ok || buffer.size() < jsonLength + 4) return; // 데이터 부족
 
-          // JSON 데이터만 추출
-          QByteArray jsonData = buffer.mid(4, jsonLength);
-          buffer.remove(0, jsonLength + 4); // 처리한 데이터 제거
+    // 최소한 4바이트(길이 정보)가 있어야 함
+    if (buffer.size() < 4) return;
 
-          // JSON 변환
-          QJsonParseError parseError;
-          QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &parseError);
-          if (parseError.error == QJsonParseError::NoError) {
-              QJsonObject jsonObj = jsonDoc.object();
-              qDebug() << "Received JSON:" << jsonObj;
-              QString str = jsonObj["msgtype"].toVariant().toString()+","+jsonObj["timestamp"].toString()+","+jsonObj["msgport"].toString()+","+jsonObj["sendcli"].toString()+","+jsonObj["msgcontext"].toString();
+    // 4바이트 길이 읽기
+    QDataStream stream(&buffer, QIODevice::ReadOnly);
+    stream.setByteOrder(QDataStream::BigEndian);
+    qint32 jsonLength;
+    stream >> jsonLength;
 
-              msgProcess(clientConnection, str.toUtf8());  // 메시지 처리
-          }
-      }
+    // JSON 길이만큼 데이터가 도착했는지 확인
+    if (buffer.size() < jsonLength + 4) return;
+
+    // JSON 데이터 추출
+    QByteArray jsonData = buffer.mid(4, jsonLength);
+    buffer.remove(0, jsonLength + 4); // 처리한 데이터 제거
+    // JSON 변환
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &parseError);
+    if (parseError.error == QJsonParseError::NoError) {
+        QJsonObject jsonObj = jsonDoc.object();
+        qDebug() << "Received JSON:" << jsonObj;
+        msgProcess(clientConnection, jsonObj);  // 메시지 처리
+    }
 
 
 }
 
-void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
+void Widget::msgProcess(QTcpSocket *clientConnection,  QJsonObject json)
 {
-    qDebug()<<"arrived Message : "<<bytearray;
-    QStringList splitMessage = QString(bytearray).split(QLatin1Char(','));
-    int splitSize = splitMessage.size();
-    QList<QString> chatname = splitMessage[3].split(':');
+    qDebug()<<"arrived Message : "<<json;
+
+
+    // QString stringmsg = QString(bytearray);
+     qDebug()<<"msgProcess STart!";
+     //Json변환
+
+     newMessaage->setMsgType(json["msgtype"].toInt());
+     newMessaage->setMsgNum(json["timestamp"].toString());
+     newMessaage->setMsgPort(json["msgport"].toString());
+     newMessaage->setMsgSendCLi(json["sendcli"].toString());
+     newMessaage->setMsgContext(json["msgcontext"].toString());
+
+     QStringList sepContext = newMessaage->getMsgContext().split(',');
+
+     qDebug()<<json;
+
+
+
+   // QStringList splitMessage = QString(bytearray).split(QLatin1Char(','));
+    //int splitSize = splitMessage.size();
+   QStringList chatname =  newMessaage->getMsgSendCli().split(':');
     QString chatroom;
     QString newPort;
-    if(splitSize >4){
-        newMessaage->setMsgType(splitMessage[0].toInt());
-        newMessaage->setMsgNum(splitMessage[1].toInt());
-        newMessaage->setMsgPort(splitMessage[2]);
-        newMessaage->setMsgSendCLi(splitMessage[3]);
-        newMessaage->setMsgContext(splitMessage[4]);
-      }
-    else{
-        while(splitMessage.length()<5)
-        {
-            splitMessage.append("");
-        }
-        newMessaage->setMsgType(splitMessage[0].toInt());
-        newMessaage->setMsgNum(splitMessage[1].toInt());
-        newMessaage->setMsgPort(splitMessage[2]);
-        newMessaage->setMsgSendCLi(splitMessage[3]);
-        newMessaage->setMsgContext(splitMessage[4]);
-    }
+//    if(splitSize >4){
+//        newMessaage->setMsgType( newMessaage->getMsgType.toInt());
+//        newMessaage->setMsgNum( newMessaage->getMsgNum.toInt());
+//        newMessaage->setMsgPort( newMessaage->getMsgPort);
+//        newMessaage->setMsgSendCLi( newMessaage->getMsgSendCli);
+//        newMessaage->setMsgContext( newMessaage->getMsgContext);
+//      }
+//    else{
+//        while(splitMessage.length()<5)
+//        {
+//            splitMessage.append("");
+//        }
+//        newMessaage->setMsgType( newMessaage->getMsgType.toInt());
+//        newMessaage->setMsgNum( newMessaage->getMsgNum.toInt());
+//        newMessaage->setMsgPort( newMessaage->getMsgPort);
+//        newMessaage->setMsgSendCLi( newMessaage->getMsgSendCli);
+//        newMessaage->setMsgContext( newMessaage->getMsgContext);
+//    }
     QStringList splitPort = newMessaage->getMsgPort().split(":");
 
-    qDebug()<<"Type : "+splitMessage[0]+","+splitMessage[1]+","+splitMessage[2]+","+splitMessage[3]+","+"MESAGE: "+splitMessage[4];
+    qDebug()<<"Type : "+ QString(newMessaage->getMsgType())+","+ newMessaage->getMsgNum()+","+ newMessaage->getMsgPort()+","+ newMessaage->getMsgSendCli()+","+"MESAGE: "+ newMessaage->getMsgContext();
        printf("newMEssage %d\n",newMessaage->getMsgType());
 
     switch (newMessaage->getMsgType())
@@ -196,7 +217,7 @@ void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
         else
         {
             qDebug()<<"SUCESS :: CREATE Account!";
-            m_ID = splitMessage[3];
+            m_ID =  newMessaage->getMsgSendCli();
             myInfo->setMyId(m_ID);
             qDebug()<<"MY ID == "<<m_ID;
             createAccWidget->hide();
@@ -224,7 +245,7 @@ void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
         else
         {
             qDebug()<<"SUCESS :: Sign In!";
-            myInfo->setMyId(splitMessage[3]);
+            myInfo->setMyId( newMessaage->getMsgSendCli());
             qDebug()<<"SEtMY ID : "<<myInfo->getMyId();
             loginWidget->hide();
             chatList->show();
@@ -233,11 +254,11 @@ void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
         break;
     case 2://채팅방 하나당 위젯 하나 생성->new? 맵에 저장해서 채팅방 이름 받아서 같은 채팅방 이름만 전송
         qDebug()<<"SEndID: "<<newMessaage->getMsgSendCli()<<"my_Id : "<<myInfo->getMyId();
-        for(int i = 0; i<chatname.length();i++)
+        for(int i = 0; i<splitPort.length();i++)
         {
-            if(chatname[i] != newMessaage->getMsgSendCli())
+            if(splitPort[i] != newMessaage->getMsgSendCli())
             {
-               chatroom = chatname[i];
+               chatroom = splitPort[i];
             }
         }
         if(newMessaage->getMsgSendCli() != myInfo->getMyId())
@@ -262,7 +283,7 @@ void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
         break;
     case 3:
         //검색 결과 서버로 부터 받은 yes no처리
-        if(newMessaage->getMsgContext() == "N")
+        if(sepContext[0] == "N")
         {
 
             QMessageBox connectError;
@@ -280,31 +301,25 @@ void Widget::msgProcess(QTcpSocket *clientConnection,  QByteArray bytearray)
             }
         }
         else
-            after_search(splitMessage[5]);
+            after_search(sepContext[1]);
 
         break;
     case 5:
         qDebug()<<"recevie friends list";
-        for(int i = 4;i<splitMessage.size();i++)
+        for(int i = 0;i<sepContext.size();i++)
         {
             chatWidget = new ChatWidget();
-            newPort = myInfo->getMyId()+":"+splitMessage[i];
-            myInfo->addNewPort(splitMessage[i],newPort);
-            chatList->addchatroom(splitMessage[i]);
-            joinChatList.insert(splitMessage[i],chatWidget);
-            chatWidget->setWindowTitle(splitMessage[i]);
-            chatWidget->setChatroomName(splitMessage[i]);
-            connect(joinChatList[splitMessage[i]],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
+            newPort = myInfo->getMyId()+":"+sepContext[i];
+            myInfo->addNewPort(sepContext[i],newPort);
+            chatList->addchatroom(sepContext[i]);
+            joinChatList.insert(sepContext[i],chatWidget);
+            chatWidget->setWindowTitle(sepContext[i]);
+            chatWidget->setChatroomName(sepContext[i]);
+            connect(joinChatList[sepContext[i]],SIGNAL(signal_newMsg(QString)),this,SLOT(sendData(QString)));
         }
 
         break;
     default:
-        message->append(newMessaage->getMsgContext());
-        QTextCursor cursor = message->textCursor();
-        QTextBlockFormat textBlockFormat = cursor.blockFormat();
-        textBlockFormat.setAlignment(Qt::AlignCenter);
-        cursor.mergeBlockFormat(textBlockFormat);
-        message->setTextCursor(cursor);
         break;
     }
 }
@@ -335,7 +350,11 @@ void Widget::sendData(QString curport)
     joinChatList[currport]->setText(myInfo->getMyId(),"me:"+forsend);
 
     QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
-    QByteArray lengthPrefix = QByteArray::number(str.size()).rightJustified(4, '0');
+    QByteArray lengthPrefix;
+    QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+    stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+    stream << static_cast<qint32>(str.size());
+
     if(str.length()) {
         QByteArray bytearray;
         bytearray = lengthPrefix+str.toUtf8();
@@ -355,8 +374,10 @@ void Widget::sendData(QString curport)
          json["msgcontext"] = name;
 
      QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
-     QByteArray lengthPrefix = QByteArray::number(str.size()).rightJustified(4, '0');
-     if(str.length()) {
+     QByteArray lengthPrefix;
+     QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+     stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+     stream << static_cast<qint32>(str.size());     if(str.length()) {
          QByteArray bytearray;
          bytearray = lengthPrefix+str.toUtf8();
          //bytearray.append("\r\n");
@@ -419,8 +440,10 @@ void Widget::recvClientInfo( QString newClientInfo)//회원가입정보 ,로 구
         json["msgcontext"] = newClientInfo;
 
     QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
-    QByteArray lengthPrefix = QByteArray::number(str.size()).rightJustified(4, '0');
-    if(str.length()) {
+    QByteArray lengthPrefix;
+    QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+    stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+    stream << static_cast<qint32>(str.size());    if(str.length()) {
         QByteArray bytearray;
         bytearray = lengthPrefix+str.toUtf8();
         //bytearray.append("\r\n");
@@ -444,8 +467,10 @@ void Widget::slot_click_chatroom(QString chatroom)
         json["msgcontext"] = roomPort;
 
     QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
-    QByteArray lengthPrefix = QByteArray::number(str.size()).rightJustified(4, '0');
-    if(str.length()) {
+    QByteArray lengthPrefix;
+    QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+    stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+    stream << static_cast<qint32>(str.size());    if(str.length()) {
         QByteArray bytearray;
         bytearray = lengthPrefix+str.toUtf8();
         //bytearray.append("\r\n");
@@ -480,8 +505,10 @@ void Widget:: slot_click_search(QString search_Id)
         json["msgcontext"] = to_search;
 
     QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
-    QByteArray lengthPrefix = QByteArray::number(str.size()).rightJustified(4, '0');
-    if(str.length()) {
+    QByteArray lengthPrefix;
+    QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+    stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+    stream << static_cast<qint32>(str.size());    if(str.length()) {
         QByteArray bytearray;
         bytearray = lengthPrefix+str.toUtf8();
         //bytearray.append("\r\n");
@@ -519,8 +546,10 @@ void Widget:: after_search(QString searchId)
                 json["msgcontext"] = searchId;
 
             QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
-            QByteArray lengthPrefix = QByteArray::number(str.size()).rightJustified(4, '0');
-            if(str.length()) {
+            QByteArray lengthPrefix;
+            QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+            stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+            stream << static_cast<qint32>(str.size());            if(str.length()) {
                 QByteArray bytearray;
                 bytearray = lengthPrefix+str.toUtf8();
                 //bytearray.append("\r\n");
@@ -574,8 +603,10 @@ void Widget::slot_newFriend(QString newFriend)
             json["msgcontext"] = newFriend;
 
         QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
-        QByteArray lengthPrefix = QByteArray::number(str.size()).rightJustified(4, '0');
-        if(str.length()) {
+        QByteArray lengthPrefix;
+        QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+        stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+        stream << static_cast<qint32>(str.size());        if(str.length()) {
             QByteArray bytearray;
             bytearray = lengthPrefix+str.toUtf8();
             //bytearray.append("\r\n");
