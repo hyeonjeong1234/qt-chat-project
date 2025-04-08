@@ -21,7 +21,9 @@ void ChatWidget::setText(QString sendCli,QString sendMsg)//바꿀필요있을듯
 {
     QList<QString> checkme = sendMsg.split(':');
     QString msg;
+
     msg = sendMsg.remove(0,checkme[0].size()+1);
+
     if(checkme[0] == "me")
     {
 

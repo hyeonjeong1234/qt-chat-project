@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 6.0.2, 2025-01-23T23:51:20. -->
+<!-- Written by QtCreator 6.0.2, 2025-04-07T16:26:04. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -163,6 +163,7 @@
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/hj/miniprojedt2/samplecode/EchoServer &amp; Client/EchoServerApp</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>

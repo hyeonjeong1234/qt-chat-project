@@ -405,11 +405,11 @@ void DataBasseThread::receive_clientInfo(QString newCliInfo)
     QStringList splitInfo = newCliInfo.split(',');
 
     int num = makeNum( );
-    id = splitInfo[5];
-    pw =  splitInfo[6];
-    name =  splitInfo[4];
-    number =  splitInfo[7];
-    address =  splitInfo[8];
+    id = splitInfo[1];
+    pw =  splitInfo[2];
+    name =  splitInfo[0];
+    number =  splitInfo[3];
+    address =  splitInfo[4];
     ClientItem* c = new ClientItem(num, id, pw, name, number, address);
     addClient(c);
     //clientList.insert(num, c);
