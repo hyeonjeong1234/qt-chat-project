@@ -21,12 +21,12 @@ void ChatWidget::setText(QString sendCli,QString sendMsg)//바꿀필요있을듯
 {
     QList<QString> checkme = sendMsg.split(':');
     QString msg;
-    for(int i = 1; i<checkme.length();i++)//이거 반복하면 꽤 오래 걸듯
-    {
-        msg += checkme[i];
-    }
+
+    msg = sendMsg.remove(0,checkme[0].size()+1);
+
     if(checkme[0] == "me")
     {
+
         ui->textEdit->append(sendCli+": "+msg);
         QTextCursor cursor = ui->textEdit->textCursor();
         QTextBlockFormat textBlockFormat = cursor.blockFormat();

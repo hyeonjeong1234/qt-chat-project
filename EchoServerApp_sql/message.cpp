@@ -6,11 +6,11 @@ Message::Message()
 }
 Message::~Message()
 {}
-void Message::setMsgNum(int num)
+void Message::setMsgNum(QString num)
 {
     this->m_msgNum = num;
 }
-int Message::getMsgNum()
+QString Message::getMsgNum()
 {
     return m_msgNum;
 }

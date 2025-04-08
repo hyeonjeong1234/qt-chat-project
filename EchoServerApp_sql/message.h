@@ -8,8 +8,8 @@ class Message
 public:
     Message();
     ~Message();
-    void setMsgNum(int num);
-    int getMsgNum();
+    void setMsgNum(QString num);
+    QString getMsgNum();
     void setMsgPort(QString port);
     void setMsgType(int type);
     void setMsgSendCLi(QString sendCli);
@@ -21,7 +21,7 @@ public:
 
 private:
     int m_msgType;
-    int m_msgNum;//메시지 유형? 0=>회원정보(회원가입시), 1=>채팅메시지 이런식?
+    QString m_msgNum;//메시지 유형? 0=>회원정보(회원가입시), 1=>채팅메시지 이런식?
     QString m_msgPort;
     QString m_msgSendCli;
     QString m_msgContext;

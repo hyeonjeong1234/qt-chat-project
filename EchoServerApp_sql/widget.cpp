@@ -3,6 +3,9 @@
 #include <QtNetwork>
 #include <QDebug>
 #include <QThread>
+#include <QJsonDocument>
+#include <QJsonObject>
+
 #include "widget.h"
 
 #define BLOCK_SIZE      1024
@@ -66,10 +69,24 @@ void Widget::clientDisconnect()
     curruserList.remove(clientDisconnection);
     foreach(QTcpSocket * otherClient,socketList)
     {
-        QByteArray bytearray("11,,,,[Notice] 회원이 퇴장 하셨습니다.");//마지막 사람 나갔을 때도 서버로 알림 보내기
-        bytearray.append("\r\n");
-        otherClient->write(bytearray);
-        infoLabel->setText(QString(bytearray));
+        QJsonObject json;
+            json["msgtype"] = 11;
+            json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+            json["msgport"] = " ";  // 추가 필드 예시
+            json["sendcli"] = " "; // 읽음 여부 추가
+            json["msgcontext"] = "[Notice] 회원이 로그아웃 하셨습니다.";
+
+        QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+        QByteArray lengthPrefix;
+        QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+        stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+        stream << static_cast<qint32>(str.size());        if(str.length()) {
+            QByteArray bytearray;
+            bytearray = lengthPrefix+str.toUtf8();
+            //bytearray.append("\r\n");
+            otherClient->write(bytearray);
+        }
+        infoLabel->setText(str);
 
     }
 
@@ -77,44 +94,56 @@ void Widget::clientDisconnect()
 
 void Widget::echoData( )
 {
-    QTcpSocket *clientConnection = (QTcpSocket *)sender( );
+
+    QTcpSocket *clientConnection = (QTcpSocket *)sender();
     QByteArray buffer;
     buffer.append(clientConnection->readAll());
-    while (buffer.contains("\r\n")) { // 종료 문자가 있는 동안 반복
-           int endIndex = buffer.indexOf("\r\n"); // 메시지 끝 위치 찾기
-           QByteArray message = buffer.left(endIndex); // 메시지 추출
-           buffer.remove(0, endIndex + 2); // 처리한 메시지와 종료 문자 제거
-           qDebug()<<message;
-           msgProcess(clientConnection, message); // 메시지 처리
-       }
 
+    // 최소한 4바이트(길이 정보)가 있어야 함
+    if (buffer.size() < 4) return;
+
+    // 4바이트 길이 읽기
+    QDataStream stream(&buffer, QIODevice::ReadOnly);
+    stream.setByteOrder(QDataStream::BigEndian);
+    qint32 jsonLength;
+    stream >> jsonLength;
+
+    // JSON 길이만큼 데이터가 도착했는지 확인
+    if (buffer.size() < jsonLength + 4) return;
+
+    // JSON 데이터 추출
+    QByteArray jsonData = buffer.mid(4, jsonLength);
+    buffer.remove(0, jsonLength + 4); // 처리한 데이터 제거
+
+    // JSON 변환
+    QJsonParseError parseError;
+    QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData, &parseError);
+    if (parseError.error == QJsonParseError::NoError) {
+        QJsonObject jsonObj = jsonDoc.object();
+        qDebug() << "Received JSON:" << jsonObj;
+        msgProcess(clientConnection, jsonObj);  // 메시지 처리
+    }
 }
-void Widget::msgProcess(QTcpSocket *clientConnection,QByteArray bytearray)
+
+void Widget::msgProcess(QTcpSocket *clientConnection,QJsonObject json)
 {
-    QString stringmsg = QString(bytearray);
-    qDebug()<<bytearray;
-     QList<QString> splitArray = stringmsg.split(',');
+   // QString stringmsg = QString(bytearray);
+    qDebug()<<"msgProcess STart!";
+    //Json변환
 
-     newMsg->setMsgType(splitArray[0].toInt());
-     newMsg->setMsgPort(splitArray[2]);
-     newMsg->setMsgSendCLi(splitArray[3]);
-     QString context;
-     for(int i = 4; i<splitArray.length();i++)
-     {
+    newMsg->setMsgType(json["msgtype"].toInt());
+    newMsg->setMsgNum(json["timestamp"].toString());
+    newMsg->setMsgPort(json["msgport"].toString());
+    newMsg->setMsgSendCLi(json["sendcli"].toString());
+    newMsg->setMsgContext(json["msgcontext"].toString());
 
-         if(i == 4){
-             context =splitArray[i];
-         }
-         else
-         {
-             context+=",";
-             context+=splitArray[i];
-         }
-     }
-     newMsg->setMsgContext(context);
-    if(bytearray.front() == '0'){
-        qDebug()<<splitArray[4];
-            QList<QString> splitClientInfo = {splitArray[4],splitArray[5],splitArray[6],splitArray[7],splitArray[8]};
+    QStringList sepContext = newMsg->getMsgContext().split(',');
+
+    qDebug()<<json;
+
+    if(newMsg->getMsgType() == 0){
+        qDebug()<<newMsg->getMsgContext();
+            QList<QString> splitClientInfo = {sepContext[0],sepContext[1],sepContext[2],sepContext[3],sepContext[4]};
             ClientItem *newClientInfo = new ClientItem;
             newClientInfo->setClientName(splitClientInfo[0]);
             newClientInfo->setClientId(splitClientInfo[1]);
@@ -123,30 +152,59 @@ void Widget::msgProcess(QTcpSocket *clientConnection,QByteArray bytearray)
             newClientInfo->setClientAddress(splitClientInfo[4]);
             clientInfoList.append(newClientInfo);
             qDebug()<<newClientInfo->getClientName()<<","<<newClientInfo->getClientId()<<","<<newClientInfo->getClientPw()<<","<<newClientInfo->getClientPhoneNum()<<","<<newClientInfo->getClientAddress();
-            QByteArray bytearray("0,,NEWCLI,"+splitClientInfo[1].toUtf8()+",Y");
-            bytearray.append("\r\n");
-            clientConnection->write(bytearray);
-            infoLabel->setText(QString(bytearray));
+
+            QJsonObject json;
+                json["msgtype"] = 0;
+                json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+                json["msgport"] = "NEWCLI";  // 추가 필드 예시
+                json["sendcli"] = splitClientInfo[1]; // 읽음 여부 추가
+                json["msgcontext"] = "Y";
+
+            QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+            QByteArray lengthPrefix;
+            QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+            stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+            stream << static_cast<qint32>(str.size());            if(str.length()) {
+                QByteArray bytearray;
+                bytearray = lengthPrefix+str.toUtf8();
+                //bytearray.append("\r\n");
+                clientConnection->write(bytearray);
+            }
+            infoLabel->setText(str);
             //회원가입시 내용파일에 저장필요splitArray
             clientIdList.append(splitClientInfo[1]);
-            emit send_clientInfo(stringmsg);
+            qDebug()<<"MsgCOntext!!"+newMsg->getMsgContext();
+            emit send_clientInfo(newMsg->getMsgContext());
     }
 
-    else if (bytearray[0] == '2')
+    else if (newMsg->getMsgType() == 2)
     {
-        QByteArray a ="2,,"+splitArray[2].toUtf8()+","+splitArray[3].toUtf8()+","+splitArray[4].toUtf8() ;
-        qDebug()<<a;
-        QList<QByteArray> splitport = splitArray[2].toUtf8().split(':');
+        QJsonObject json;
+            json["msgtype"] = 2;
+            json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+            json["msgport"] = newMsg->getMsgPort();  // 추가 필드 예시
+            json["sendcli"] = newMsg->getMsgSendCli(); // 읽음 여부 추가
+            json["msgcontext"] = newMsg->getMsgContext();
+
+        QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+        QByteArray lengthPrefix;
+        QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+        stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+        stream << static_cast<qint32>(str.size());
+        QList<QByteArray> splitport = newMsg->getMsgPort().toUtf8().split(':');
         foreach(QTcpSocket * otherClient,socketList)
         {
             if((otherClient!=clientConnection))
             {
                 if(splitport.indexOf(curruserList[otherClient].toUtf8())!=-1)
                 {
-                    a.append("\r\n");
-                    otherClient->write(a);
-                    infoLabel->setText(QString(bytearray));
-
+                    if(str.length()) {
+                        QByteArray bytearray;
+                        bytearray = lengthPrefix+str.toUtf8();
+                        //bytearray.append("\r\n");
+                        otherClient->write(bytearray);
+                        infoLabel->setText(str);
+                    }
                 }
 
             }
@@ -154,10 +212,10 @@ void Widget::msgProcess(QTcpSocket *clientConnection,QByteArray bytearray)
                 continue;
         }
     }
-    else if(bytearray[0] == '3')
+    else if(newMsg->getMsgType() == 3)
     {
-        qDebug()<<"cur port : "<<splitArray[2]<<"msg:"<<splitArray[4];
-        int result = dbThread->contain(splitArray[4]);
+        qDebug()<<"cur port : "<<newMsg->getMsgPort()<<"msg:"<<newMsg->getMsgContext();
+        int result = dbThread->contain(newMsg->getMsgContext());
         QByteArray str_result;
         if(result ==0)
         {
@@ -167,27 +225,42 @@ void Widget::msgProcess(QTcpSocket *clientConnection,QByteArray bytearray)
         {
             str_result = "Y";
         }
-        QByteArray a = "3,,Search,"+splitArray[3].toUtf8()+","+str_result+","+splitArray[4].toUtf8();
-        a.append("\r\n");
-        clientConnection->write(a);
-        infoLabel->setText(QString(bytearray));//-1이면 실패
+
+        QJsonObject json;
+            json["msgtype"] = 3;
+            json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+            json["msgport"] = "Search";  // 추가 필드 예시
+            json["sendcli"] = newMsg->getMsgSendCli(); // 읽음 여부 추가
+            json["msgcontext"] = str_result+","+newMsg->getMsgContext();
+
+        QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+        QByteArray lengthPrefix;
+        QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+        stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+        stream << static_cast<qint32>(str.size());        if(str.length()) {
+            QByteArray bytearray;
+            bytearray = lengthPrefix+str.toUtf8();
+            //bytearray.append("\r\n");
+            clientConnection->write(bytearray);
+        }
+        infoLabel->setText(str);
 
     }
-    else if(bytearray[0]=='1')
+    else if(newMsg->getMsgType()==1)
     {
 
-        curruserList[clientConnection] = splitArray[4];
-        emit search_loginInfo(clientConnection,splitArray[4],splitArray[5]);
+        curruserList[clientConnection] = sepContext[0];
+        emit search_loginInfo(clientConnection,sepContext[0],sepContext[1]);
 
     }
-    else if(bytearray[0] == '4')
+    else if(newMsg->getMsgType()== 4)
     {
-       QList<QByteArray> people = splitArray[4].toUtf8().split(':');
+       QList<QByteArray> people = newMsg->getMsgContext().toUtf8().split(':');
        QString a = QString(people[1])+":"+QString(people[0]);
 
-       if((m_chatList.find(QString(splitArray[4]))==m_chatList.end())&&(m_chatList.find(a)==m_chatList.end()))
+       if((m_chatList.find(QString(newMsg->getMsgContext()))==m_chatList.end())&&(m_chatList.find(a)==m_chatList.end()))
        {
-           m_chatList.insert(splitArray[4],a);
+           m_chatList.insert(newMsg->getMsgContext(),a);
 
            foreach(QTcpSocket * otherClient,socketList)
            {
@@ -195,21 +268,37 @@ void Widget::msgProcess(QTcpSocket *clientConnection,QByteArray bytearray)
                if(check!=-1)
                {
                    QByteArray bytearray("10,,,,[Notice]"+people[check]+"님이 입장 하셨습니다.");
-                   bytearray.append("\r\n");
-                   otherClient->write(bytearray);
-                   infoLabel->setText(QString(bytearray));
+
+                   QJsonObject json;
+                       json["msgtype"] = 10;
+                       json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+                       json["msgport"] = " ";  // 추가 필드 예시
+                       json["sendcli"] = " "; // 읽음 여부 추가
+                       json["msgcontext"] = QString("[Notice]"+people[check]+"님이 입장 하셨습니다.");
+
+                   QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+                   QByteArray lengthPrefix;
+                   QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+                   stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+                   stream << static_cast<qint32>(str.size());                   if(str.length()) {
+                       QByteArray bytearray;
+                       bytearray = lengthPrefix+str.toUtf8();
+                       //bytearray.append("\r\n");
+                       clientConnection->write(bytearray);
+                   }
+                   infoLabel->setText(str);
                }
 
            }
        }
     }
-    else if(bytearray[0] == '5')
+    else if(newMsg->getMsgType()== 5)
     {
         emit sig_add_new_friend(newMsg->getMsgSendCli(), newMsg->getMsgContext());
     }
     else
     {
-        qDebug()<<"msgType : "<<bytearray[0];
+        qDebug()<<"msgType : "<<newMsg->getMsgType();
     }
 }
 
@@ -217,12 +306,24 @@ void Widget::slot_login_check(QTcpSocket* sendSocket,QString result)
 {
     if(result=="Y")
     {
-        QByteArray a ="1,,LOGIN,"+curruserList[sendSocket].toUtf8()+",Y" ;
-        //a.append(bytearray);
-        //로그인하면 회원가입파일에서 아이디 찾아서 있으면 아이디 반환. 없으면 n반환 y반환했으면 curClient에 소켓이랑 아이디 저장
-        a.append("\r\n");
-       sendSocket->write(a);
-        infoLabel->setText(QString(a));
+        QJsonObject json;
+            json["msgtype"] = 1;
+            json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+            json["msgport"] = "LOGIN";  // 추가 필드 예시
+            json["sendcli"] = curruserList[sendSocket]; // 읽음 여부 추가
+            json["msgcontext"] = "Y";
+
+        QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+        QByteArray lengthPrefix;
+        QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+        stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+        stream << static_cast<qint32>(str.size());        if(str.length()) {
+            QByteArray bytearray;
+            bytearray = lengthPrefix+str.toUtf8();
+            //bytearray.append("\r\n");
+           sendSocket->write(bytearray);
+        }
+        infoLabel->setText(str);
     }
      if (sendSocket->waitForBytesWritten()) {
     QTimer::singleShot(0, this, [this, sendSocket] {
@@ -245,13 +346,24 @@ void Widget::slot_return_friends(QList<QString>& friends,QTcpSocket* socket)
                 a.append(",");
             a.append(friends[i].toUtf8());
         }
-        QByteArray msg = "5,,friendsList,,";
-        a.insert(0,msg);
-        a.append("\r\n");
-        if(socket->write(a))
-            qDebug()<<"Success!!!!!!!1";
-        else
-            qDebug()<<"failㅠㅠㅠㅠㅠㅠㅠㅠㅠ";
-        infoLabel->setText(QString(a));
+
+        QJsonObject json;
+            json["msgtype"] = 5;
+            json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
+            json["msgport"] = "FriendList";  // 추가 필드 예시
+            json["sendcli"] = " "; // 읽음 여부 추가
+            json["msgcontext"] = QString(a);
+
+        QString str = QString(QJsonDocument(json).toJson(QJsonDocument::Compact));
+        QByteArray lengthPrefix;
+        QDataStream stream(&lengthPrefix, QIODevice::WriteOnly);
+        stream.setByteOrder(QDataStream::BigEndian); // 네트워크 전송 표준
+        stream << static_cast<qint32>(str.size());        if(str.length()) {
+            QByteArray bytearray;
+            bytearray = lengthPrefix+str.toUtf8();
+            //bytearray.append("\r\n");
+            socket->write(bytearray);
+        }
+        infoLabel->setText(str);
     }
 }
