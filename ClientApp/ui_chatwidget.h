@@ -41,7 +41,7 @@ public:
         font.setBold(true);
         font.setWeight(75);
         ChatWidget->setFont(font);
-        ChatWidget->setStyleSheet(QString::fromUtf8(""));
+        ChatWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(116, 88, 80);"));
         pushButton = new QPushButton(ChatWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(594, 622, 81, 41));
@@ -288,7 +288,7 @@ public:
         pushButton->setText(QCoreApplication::translate("ChatWidget", "SEND", nullptr));
         pushButton_2->setText(QString());
         label->setText(QString());
-        label_2->setText(QCoreApplication::translate("ChatWidget", "hhhhhhHHH", nullptr));
+        label_2->setText(QString());
         pushButton_4->setText(QString());
         pushButton_5->setText(QString());
         textEdit_2->setHtml(QCoreApplication::translate("ChatWidget", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"

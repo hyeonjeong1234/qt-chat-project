@@ -18,20 +18,9 @@ public:
      void addchatroom(QString addroomname);
 
 protected:
-    void mousePressEvent(QMouseEvent *event) override {
-           if (event->button() == Qt::LeftButton) {
-               m_dragPosition = event->globalPos() - frameGeometry().topLeft();
-               event->accept();
-           }
-       }
-
-       void mouseMoveEvent(QMouseEvent *event) override {
-           if (event->buttons() & Qt::LeftButton) {
-               move(event->globalPos() - m_dragPosition);
-               event->accept();
-           }
-       }
-       void paintEvent(QPaintEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
 
 private slots:
     void on_listWidget_itemClicked(QListWidgetItem *item);
