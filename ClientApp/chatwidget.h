@@ -4,6 +4,9 @@
 #include <QWidget>
 #include <QMouseEvent>
 
+#include <QPainter>
+#include <QPaintEvent>
+
 namespace Ui {
 class ChatWidget;
 }
@@ -17,23 +20,16 @@ public:
     void setText(QString sendCli,QString sendMsg);
     QString getText();
     void setChatroomName(QString);
+       void setContent(QWidget *widget);
     ~ChatWidget();
 
 protected:
-    void mousePressEvent(QMouseEvent *event) override {
-           if (event->button() == Qt::LeftButton) {
-               m_dragPosition = event->globalPos() - frameGeometry().topLeft();
-               event->accept();
-           }
-       }
-
-       void mouseMoveEvent(QMouseEvent *event) override {
-           if (event->buttons() & Qt::LeftButton) {
-               move(event->globalPos() - m_dragPosition);
-               event->accept();
-           }
-       }
-       void paintEvent(QPaintEvent *event) override;
+       void mousePressEvent(QMouseEvent *event) override;
+          void mouseReleaseEvent(QMouseEvent *event) override;
+          void mouseMoveEvent(QMouseEvent *event) override;
+          void mouseDoubleClickEvent(QMouseEvent *event) override;
+          void updateCursorShape(const QPoint &pos);
+          void paintEvent(QPaintEvent *event) override;
 private slots:
     //void slot_presentMsg(QString sendCli,QString sendMsg);
 
@@ -46,7 +42,29 @@ signals:
 private:
     Ui::ChatWidget *ui;
 
-    QPoint m_dragPosition;
+    enum ResizeRegion {
+           None,
+           Left,
+           Right,
+           Top,
+           Bottom,
+           TopLeft,
+           TopRight,
+           BottomLeft,
+           BottomRight
+       };
+
+       ResizeRegion getResizeRegion(const QPoint &pos);
+       ResizeRegion currentRegion = None;
+
+       bool resizing = false;
+       QPoint dragStartPos;
+       QRect originalGeometry;
+
+       const int resizeMargin = 8;
+       bool dragging = false;
+       bool maximized = false;
+       QRect normalGeometry;
 };
 
 #endif // CHATWIDGET_H

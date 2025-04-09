@@ -3,6 +3,7 @@
 
 #include <QPainter>
 #include <QPaintEvent>
+#include <QGraphicsDropShadowEffect>
 
 
 ChatListWidget::ChatListWidget(QWidget *parent) :
@@ -12,6 +13,14 @@ ChatListWidget::ChatListWidget(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);
+
+    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
+           shadow->setBlurRadius(25);
+           shadow->setOffset(0, 5);
+           shadow->setColor(QColor(0, 0, 0, 120));  // 투명한 검은색
+
+           this->setGraphicsEffect(shadow);
+
 }
 
 ChatListWidget::~ChatListWidget()
@@ -62,7 +71,20 @@ void ChatListWidget::paintEvent(QPaintEvent *event) //위젯이나 다이얼로�
        painter.setBrush(QColor(116, 88, 80));  // 연한 파란색 배경
 
        // 모서리를 둥글게 설정 (반지름 15)
-       painter.drawRoundedRect(0, 0, width()-1, height()-1, radius, radius);
+       painter.drawRoundedRect(0, 0, width(), height(), radius, radius);
 
        QWidget::paintEvent(event);  // 기본 위젯 이벤트 호출
 }
+void ChatListWidget::mousePressEvent(QMouseEvent *event) {
+       if (event->button() == Qt::LeftButton) {
+           m_dragPosition = event->globalPos() - frameGeometry().topLeft();
+           event->accept();
+       }
+   }
+
+   void ChatListWidget::mouseMoveEvent(QMouseEvent *event) {
+       if (event->buttons() & Qt::LeftButton) {
+           move(event->globalPos() - m_dragPosition);
+           event->accept();
+       }
+   }

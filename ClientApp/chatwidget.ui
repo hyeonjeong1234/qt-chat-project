@@ -22,7 +22,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">background-color: rgb(116, 88, 80);</string>
   </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
@@ -221,7 +221,7 @@ color:rgb(116, 88, 80);
 padding-left: 50px; padding-right: 50px;</string>
    </property>
    <property name="text">
-    <string>hhhhhhHHH</string>
+    <string/>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
