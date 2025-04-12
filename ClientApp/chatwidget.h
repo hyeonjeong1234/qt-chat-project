@@ -2,10 +2,6 @@
 #define CHATWIDGET_H
 
 #include <QWidget>
-#include <QMouseEvent>
-
-#include <QPainter>
-#include <QPaintEvent>
 
 namespace Ui {
 class ChatWidget;

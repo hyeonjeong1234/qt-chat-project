@@ -1,13 +1,12 @@
 #include "chatwidget.h"
 #include "ui_chatwidget.h"
 
-#include <QDebug>
-#include <QVBoxLayout>
+#include <QPainter>
+#include <QPaintEvent>
 #include <QGraphicsDropShadowEffect>
 #include <QMouseEvent>
-#include <QApplication>
+#include <QDebug>
 #include <QScreen>
-
 ChatWidget::ChatWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ChatWidget)
