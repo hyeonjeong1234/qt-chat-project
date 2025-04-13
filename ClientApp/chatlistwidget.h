@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QListWidgetItem>
-#include <QMouseEvent>
+
 namespace Ui {
 class ChatListWidget;
 }
@@ -18,9 +18,18 @@ public:
      void addchatroom(QString addroomname);
 
 protected:
+<<<<<<< HEAD
+     void mousePressEvent(QMouseEvent *event) override;
+        void mouseReleaseEvent(QMouseEvent *event) override;
+        void mouseMoveEvent(QMouseEvent *event) override;
+        void mouseDoubleClickEvent(QMouseEvent *event) override;
+        void updateCursorShape(const QPoint &pos);
+        void paintEvent(QPaintEvent *event) override;
+=======
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
+>>>>>>> main
 
 private slots:
     void on_listWidget_itemClicked(QListWidgetItem *item);
@@ -36,7 +45,30 @@ signals:
 
 private:
     Ui::ChatListWidget *ui;
-    QPoint m_dragPosition;
+    enum ResizeRegion {
+           None,
+           Left,
+           Right,
+           Top,
+           Bottom,
+           TopLeft,
+           TopRight,
+           BottomLeft,
+           BottomRight
+       };
+
+       ResizeRegion getResizeRegion(const QPoint &pos);
+       ResizeRegion currentRegion = None;
+
+       bool resizing = false;
+       QPoint dragStartPos;
+       QRect originalGeometry;
+
+       const int resizeMargin = 8;
+       bool dragging = false;
+       bool maximized = false;
+       QRect normalGeometry;
+
 };
 
 #endif // CHATLISTWIDGET_H
