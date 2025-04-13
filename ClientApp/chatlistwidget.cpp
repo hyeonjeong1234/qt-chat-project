@@ -13,15 +13,12 @@ ChatListWidget::ChatListWidget(QWidget *parent) :
     ui(new Ui::ChatListWidget)
 {
     ui->setupUi(this);
-    this->setWindowFlags(Qt::FramelessWindowHint);
-    this->setAttribute(Qt::WA_TranslucentBackground);
 
-    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
-           shadow->setBlurRadius(25);
-           shadow->setOffset(0, 5);
-           shadow->setColor(QColor(0, 0, 0, 120));  // 투명한 검은색
+    setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
+    setAttribute(Qt::WA_TranslucentBackground);
+    setMouseTracking(true); // 마우스 움직일 때 커서 모양 바뀌게
 
-           this->setGraphicsEffect(shadow);
+    setMinimumSize(400, 300); // 최소 크기 지정
 
 }
 
