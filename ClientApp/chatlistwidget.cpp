@@ -4,38 +4,20 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include <QGraphicsDropShadowEffect>
-<<<<<<< HEAD
 #include <QMouseEvent>
 #include <QDebug>
 #include <QScreen>
-=======
-
->>>>>>> main
 
 ChatListWidget::ChatListWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ChatListWidget)
 {
     ui->setupUi(this);
-<<<<<<< HEAD
-
     setWindowFlags(Qt::FramelessWindowHint | Qt::Window);
     setAttribute(Qt::WA_TranslucentBackground);
     setMouseTracking(true); // 마우스 움직일 때 커서 모양 바뀌게
 
     setMinimumSize(400, 300); // 최소 크기 지정
-=======
-    this->setWindowFlags(Qt::FramelessWindowHint);
-    this->setAttribute(Qt::WA_TranslucentBackground);
-
-    QGraphicsDropShadowEffect *shadow = new QGraphicsDropShadowEffect(this);
-           shadow->setBlurRadius(25);
-           shadow->setOffset(0, 5);
-           shadow->setColor(QColor(0, 0, 0, 120));  // 투명한 검은색
-
-           this->setGraphicsEffect(shadow);
->>>>>>> main
-
 }
 
 ChatListWidget::~ChatListWidget()
@@ -75,6 +57,7 @@ void ChatListWidget::on_pushButton_clicked()
 {
     emit make_groupchat();
 }
+
 
 //ui
 void ChatListWidget::mousePressEvent(QMouseEvent *event)
@@ -219,20 +202,3 @@ void ChatListWidget::paintEvent(QPaintEvent *event) //위젯이나 다이얼로�
 
        QWidget::paintEvent(event);  // 기본 위젯 이벤트 호출
 }
-<<<<<<< HEAD
-
-=======
-void ChatListWidget::mousePressEvent(QMouseEvent *event) {
-       if (event->button() == Qt::LeftButton) {
-           m_dragPosition = event->globalPos() - frameGeometry().topLeft();
-           event->accept();
-       }
-   }
-
-   void ChatListWidget::mouseMoveEvent(QMouseEvent *event) {
-       if (event->buttons() & Qt::LeftButton) {
-           move(event->globalPos() - m_dragPosition);
-           event->accept();
-       }
-   }
->>>>>>> main
