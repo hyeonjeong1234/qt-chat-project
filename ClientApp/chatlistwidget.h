@@ -18,12 +18,18 @@ public:
      void addchatroom(QString addroomname);
 
 protected:
+<<<<<<< HEAD
      void mousePressEvent(QMouseEvent *event) override;
         void mouseReleaseEvent(QMouseEvent *event) override;
         void mouseMoveEvent(QMouseEvent *event) override;
         void mouseDoubleClickEvent(QMouseEvent *event) override;
         void updateCursorShape(const QPoint &pos);
         void paintEvent(QPaintEvent *event) override;
+=======
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
+>>>>>>> main
 
 private slots:
     void on_listWidget_itemClicked(QListWidgetItem *item);

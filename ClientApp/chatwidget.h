@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+#include <QPainter>
+#include <QPaintEvent>
+
 namespace Ui {
 class ChatWidget;
 }
