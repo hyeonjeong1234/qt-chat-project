@@ -105,7 +105,7 @@ public:
         textEdit->setReadOnly(true);
         pushButton_2 = new QPushButton(ChatWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(755, 4, 32, 32));
+        pushButton_2->setGeometry(QRect(715, 4, 32, 32));
         pushButton_2->setFont(font1);
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -114,7 +114,7 @@ public:
 "	background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "	\n"
-"	background-image:url(:/window_icons/close_mid.png);\n"
+"	background-image:url(:/window_icons/size_mid.png);\n"
 "\n"
 "	border: none;\n"
 "	border-radius:10px;\n"
@@ -130,7 +130,7 @@ public:
 "QPushButton:hover{\n"
 "	background-color:  transparent;\n"
 "	\n"
-"	background-image:url(:/window_icons/close.png);\n"
+"	background-image:url(:/window_icons/size.png);\n"
 "	color: rgb(214, 192, 175);\n"
 "	\n"
 "    border-left: 0px solid rgb(214, 192, 175);\n"
@@ -142,9 +142,9 @@ public:
 "QPushButton:pressed{\n"
 "	color: rgb(214, 192, 175);\n"
 "	\n"
-"	background-image: url(:/window_icons/close_dark.png);\n"
-"	background-"
-                        "color:  transparent;\n"
+"	background-image: url(:/window_icons/size_darl.png);\n"
+"	background-col"
+                        "or:  transparent;\n"
 "	border-top: 0px solid rgb(214, 192, 175);\n"
 "	border-left: 0px solid rgb(214, 192, 175);\n"
 "	border-right: 0px solid rgb(214, 192, 175);\n"
@@ -227,7 +227,7 @@ public:
 "}"));
         pushButton_5 = new QPushButton(ChatWidget);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(715, 4, 32, 32));
+        pushButton_5->setGeometry(QRect(755, 4, 32, 32));
         pushButton_5->setFont(font1);
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -236,7 +236,7 @@ public:
 "	background-repeat: no-repeat;\n"
 "    background-position: center;\n"
 "	\n"
-"	background-image:url(:/window_icons/size_mid.png);\n"
+"	background-image:url(:/window_icons/close_mid.png);\n"
 "\n"
 "	border: none;\n"
 "	border-radius:10px;\n"
@@ -252,7 +252,7 @@ public:
 "QPushButton:hover{\n"
 "	background-color:  transparent;\n"
 "	\n"
-"	background-image:url(:/window_icons/size.png);\n"
+"	background-image:url(:/window_icons/close.png);\n"
 "	color: rgb(214, 192, 175);\n"
 "	\n"
 "    border-left: 0px solid rgb(214, 192, 175);\n"
@@ -264,9 +264,9 @@ public:
 "QPushButton:pressed{\n"
 "	color: rgb(214, 192, 175);\n"
 "	\n"
-"	background-image: url(:/window_icons/size_darl.png);\n"
-"	background-col"
-                        "or:  transparent;\n"
+"	background-image: url(:/window_icons/close_dark.png);\n"
+"	background-"
+                        "color:  transparent;\n"
 "	border-top: 0px solid rgb(214, 192, 175);\n"
 "	border-left: 0px solid rgb(214, 192, 175);\n"
 "	border-right: 0px solid rgb(214, 192, 175);\n"
@@ -303,7 +303,7 @@ public:
         QWidget::setTabOrder(pushButton_2, textEdit);
 
         retranslateUi(ChatWidget);
-        QObject::connect(pushButton_2, SIGNAL(clicked()), ChatWidget, SLOT(close()));
+        QObject::connect(pushButton_5, SIGNAL(clicked()), ChatWidget, SLOT(close()));
 
         QMetaObject::connectSlotsByName(ChatWidget);
     } // setupUi
