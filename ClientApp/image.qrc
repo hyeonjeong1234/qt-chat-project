@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>window_icons/size.png</file>
+        <file>window_icons/size_mid.png</file>
+        <file>window_icons/size_darl.png</file>
+        <file>window_icons/close.png</file>
+        <file>window_icons/close_mid.png</file>
+        <file>window_icons/close_dark.png</file>
+        <file>window_icons/_mid.png</file>
+        <file>window_icons/_dark.png</file>
+        <file>window_icons/_.png</file>
+    </qresource>
+</RCC>
