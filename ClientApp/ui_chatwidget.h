@@ -34,7 +34,7 @@ public:
     {
         if (ChatWidget->objectName().isEmpty())
             ChatWidget->setObjectName(QString::fromUtf8("ChatWidget"));
-        ChatWidget->resize(715, 703);
+        ChatWidget->resize(800, 703);
         QFont font;
         font.setFamily(QString::fromUtf8("Ubuntu"));
         font.setPointSize(14);
@@ -105,46 +105,55 @@ public:
         textEdit->setReadOnly(true);
         pushButton_2 = new QPushButton(ChatWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(670, 4, 32, 32));
+        pushButton_2->setGeometry(QRect(715, 4, 32, 32));
         pushButton_2->setFont(font1);
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
-"	background-color: rgb(197, 165, 142);\n"
+"	\n"
+"	background-color:  transparent;\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"	\n"
+"	background-image:url(:/window_icons/size_mid.png);\n"
+"\n"
 "	border: none;\n"
-"	border-radius: 10px;\n"
+"	border-radius:10px;\n"
 "	\n"
 "	color: rgb(116, 88, 80);\n"
 "	\n"
-"    border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
-"\n"
+"    border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom: 0px solid rgb(214, 192, 175);\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	background-color: rgb(197, 165, 142);\n"
+"	background-color:  transparent;\n"
 "	\n"
+"	background-image:url(:/window_icons/size.png);\n"
 "	color: rgb(214, 192, 175);\n"
 "	\n"
-"    border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
+"    border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom: 0px solid rgb(214, 192, 175);\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
 "\n"
 "}\n"
 "QPushButton:pressed{\n"
 "	color: rgb(214, 192, 175);\n"
-"	background-color:  rgb(116, 88, 80);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
-"	border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"	\n"
+"	background-image: url(:/window_icons/size_darl.png);\n"
+"	background-col"
+                        "or:  transparent;\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
+"	border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom:0px solid rgb(214, 192, 175);\n"
 "\n"
 "}"));
         label = new QLabel(ChatWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(0, 0, 715, 41));
+        label->setGeometry(QRect(0, 0, 800, 41));
         QFont font3;
         font3.setFamily(QString::fromUtf8("BM JUA_TTF"));
         font3.setPointSize(14);
@@ -157,7 +166,7 @@ public:
 "border-top-right-radius: 10px;"));
         label_2 = new QLabel(ChatWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(0, 40, 715, 71));
+        label_2->setGeometry(QRect(0, 40, 800, 71));
         QFont font4;
         font4.setFamily(QString::fromUtf8("BM JUA_TTF"));
         font4.setPointSize(24);
@@ -171,80 +180,97 @@ public:
         label_2->setMargin(0);
         pushButton_4 = new QPushButton(ChatWidget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(622, 4, 32, 32));
+        pushButton_4->setGeometry(QRect(675, 4, 32, 32));
         pushButton_4->setFont(font1);
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
-"	background-color: rgb(197, 165, 142);\n"
+"	\n"
+"	background-color:  transparent;\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"	\n"
+"	background-image: url(:/window_icons/_mid.png);\n"
 "	border: none;\n"
 "	border-radius:10px;\n"
 "	\n"
 "	color: rgb(116, 88, 80);\n"
 "	\n"
-"    border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
-"\n"
+"    border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom: 0px solid rgb(214, 192, 175);\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	background-color: rgb(197, 165, 142);\n"
+"	background-color:  transparent;\n"
 "	\n"
+"	background-image: url(:/window_icons/_.png);\n"
 "	color: rgb(214, 192, 175);\n"
 "	\n"
-"    border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
+"    border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom: 0px solid rgb(214, 192, 175);\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
 "\n"
 "}\n"
 "QPushButton:pressed{\n"
 "	color: rgb(214, 192, 175);\n"
-"	background-color:  rgb(116, 88, 80);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
-"	border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"	\n"
+"	background-image: url(:/window_icons/_dark.png);\n"
+"	background-color:  transpare"
+                        "nt;\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
+"	border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom:0px solid rgb(214, 192, 175);\n"
 "\n"
 "}"));
         pushButton_5 = new QPushButton(ChatWidget);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(574, 4, 32, 32));
+        pushButton_5->setGeometry(QRect(755, 4, 32, 32));
         pushButton_5->setFont(font1);
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
-"	background-color: rgb(197, 165, 142);\n"
+"	\n"
+"	background-color:  transparent;\n"
+"	background-repeat: no-repeat;\n"
+"    background-position: center;\n"
+"	\n"
+"	background-image:url(:/window_icons/close_mid.png);\n"
+"\n"
 "	border: none;\n"
 "	border-radius:10px;\n"
 "	\n"
 "	color: rgb(116, 88, 80);\n"
 "	\n"
-"    border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
-"\n"
+"    border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom: 0px solid rgb(214, 192, 175);\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	background-color: rgb(197, 165, 142);\n"
+"	background-color:  transparent;\n"
 "	\n"
+"	background-image:url(:/window_icons/close.png);\n"
 "	color: rgb(214, 192, 175);\n"
 "	\n"
-"    border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
+"    border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom: 0px solid rgb(214, 192, 175);\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
 "\n"
 "}\n"
 "QPushButton:pressed{\n"
 "	color: rgb(214, 192, 175);\n"
-"	background-color:  rgb(116, 88, 80);\n"
-"	border-top: 3px solid rgb(214, 192, 175);\n"
-"	border-left: 3px solid rgb(214, 192, 175);\n"
-"	border-right: 3px solid rgb(214, 192, 175);\n"
-"	border-bottom: 3px solid rgb(214, 192, 175);\n"
+"	\n"
+"	background-image: url(:/window_icons/close_dark.png);\n"
+"	background-"
+                        "color:  transparent;\n"
+"	border-top: 0px solid rgb(214, 192, 175);\n"
+"	border-left: 0px solid rgb(214, 192, 175);\n"
+"	border-right: 0px solid rgb(214, 192, 175);\n"
+"	border-bottom:0px solid rgb(214, 192, 175);\n"
 "\n"
 "}"));
         textEdit_2 = new QTextEdit(ChatWidget);

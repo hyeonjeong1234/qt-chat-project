@@ -60,7 +60,8 @@ SOURCES       = chatlistwidget.cpp \
 		message.cpp \
 		myinfo.cpp \
 		searchid.cpp \
-		widget.cpp moc_chatlistwidget.cpp \
+		widget.cpp qrc_image.cpp \
+		moc_chatlistwidget.cpp \
 		moc_chatwidget.cpp \
 		moc_createaccountwidget.cpp \
 		moc_loginwidget.cpp \
@@ -75,6 +76,7 @@ OBJECTS       = chatlistwidget.o \
 		myinfo.o \
 		searchid.o \
 		widget.o \
+		qrc_image.o \
 		moc_chatlistwidget.o \
 		moc_chatwidget.o \
 		moc_createaccountwidget.o \
@@ -262,7 +264,8 @@ Makefile: ClientApp.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.co
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		ClientApp.pro
+		ClientApp.pro \
+		image.qrc
 	$(QMAKE) -o Makefile ClientApp.pro
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf:
@@ -342,6 +345,7 @@ Makefile: ClientApp.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.co
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 ClientApp.pro:
+image.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ClientApp.pro
 
@@ -356,6 +360,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents image.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents chatlistwidget.h chatwidget.h createaccountwidget.h loginwidget.h message.h myinfo.h searchid.h widget.h $(DISTDIR)/
 	$(COPY_FILE) --parents chatlistwidget.cpp chatwidget.cpp createaccountwidget.cpp loginwidget.cpp main.cpp message.cpp myinfo.cpp searchid.cpp widget.cpp $(DISTDIR)/
@@ -383,8 +388,22 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_image.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_image.cpp
+qrc_image.cpp: image.qrc \
+		/usr/lib/qt5/bin/rcc \
+		window_icons/close.png \
+		window_icons/_mid.png \
+		window_icons/close_mid.png \
+		window_icons/size_mid.png \
+		window_icons/_.png \
+		window_icons/size_darl.png \
+		window_icons/size.png \
+		window_icons/close_dark.png \
+		window_icons/_dark.png
+	/usr/lib/qt5/bin/rcc -name image image.qrc -o qrc_image.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -468,7 +487,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -518,6 +537,9 @@ widget.o: widget.cpp widget.h \
 		searchid.h \
 		ui_widget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widget.o widget.cpp
+
+qrc_image.o: qrc_image.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_image.o qrc_image.cpp
 
 moc_chatlistwidget.o: moc_chatlistwidget.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_chatlistwidget.o moc_chatlistwidget.cpp
