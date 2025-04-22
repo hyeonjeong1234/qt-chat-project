@@ -312,7 +312,10 @@ public:
         listWidget->setGeometry(QRect(20, 213, 761, 391));
         QFont font4;
         font4.setFamily(QString::fromUtf8("BM JUA_TTF"));
-        font4.setPointSize(24);
+        font4.setPointSize(14);
+        font4.setBold(false);
+        font4.setItalic(false);
+        font4.setWeight(50);
         listWidget->setFont(font4);
         listWidget->setStyleSheet(QString::fromUtf8("QListView {\n"
 "    color: rgb(116, 88, 80);\n"
@@ -323,6 +326,7 @@ public:
 "	background-color: rgb(197, 165, 142);\n"
 " 	show-decoration-selected: 1; \n"
 "	\n"
+"	font: 14pt \"BM JUA_TTF\";\n"
 "}\n"
 "\n"
 "QListView::item:alternate {\n"
@@ -332,12 +336,14 @@ public:
 "border-width: 3px;\n"
 "	border-color:rgb(172, 137, 116);\n"
 "	border-radius: 5;\n"
+"	font: 14pt \"BM JUA_TTF\";\n"
 "}\n"
 "\n"
 "QListView::item:selected {\n"
 "    color:rgb(214, 192, 175);\n"
 "	background-color:rgb(255, 162, 0);\n"
 "	border-radius: 10px;\n"
+"	font: 14pt \"BM JUA_TTF\";\n"
 "}\n"
 "\n"
 "QListView::item:selected:!active {\n"
@@ -346,19 +352,21 @@ public:
 "border-width: 3px;\n"
 "	border-color:rgb(214, 192, 175);\n"
 "	border-radius: 5;\n"
+"	font: 14pt \"BM JUA_TTF\";\n"
 "}\n"
 "\n"
 "QListView::item:selected:active {\n"
 "    color:rgb(116, 88, 80);\n"
-"	background-color:rgb(214, 192, 175);\n"
+"	background-c"
+                        "olor:rgb(214, 192, 175);\n"
 "border-width: 3px;\n"
 "	border-color:rgb(172, 137, 116);\n"
 "	border-radius: 5;\n"
+"	font: 14pt \"BM JUA_TTF\";\n"
 "\n"
 "}\n"
 "\n"
-""
-                        "QListView::item:hover {\n"
+"QListView::item:hover {\n"
 "    color: rgb(214, 192, 175);\n"
 "	background-color: transparent;\n"
 "	border-width: 3px;\n"

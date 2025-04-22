@@ -424,7 +424,10 @@ QPushButton:pressed{
    <property name="font">
     <font>
      <family>BM JUA_TTF</family>
-     <pointsize>24</pointsize>
+     <pointsize>14</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -437,6 +440,7 @@ QPushButton:pressed{
 	background-color: rgb(197, 165, 142);
  	show-decoration-selected: 1; 
 	
+	font: 14pt &quot;BM JUA_TTF&quot;;
 }
 
 QListView::item:alternate {
@@ -446,12 +450,14 @@ QListView::item:alternate {
 border-width: 3px;
 	border-color:rgb(172, 137, 116);
 	border-radius: 5;
+	font: 14pt &quot;BM JUA_TTF&quot;;
 }
 
 QListView::item:selected {
     color:rgb(214, 192, 175);
 	background-color:rgb(255, 162, 0);
 	border-radius: 10px;
+	font: 14pt &quot;BM JUA_TTF&quot;;
 }
 
 QListView::item:selected:!active {
@@ -460,6 +466,7 @@ QListView::item:selected:!active {
 border-width: 3px;
 	border-color:rgb(214, 192, 175);
 	border-radius: 5;
+	font: 14pt &quot;BM JUA_TTF&quot;;
 }
 
 QListView::item:selected:active {
@@ -468,6 +475,7 @@ QListView::item:selected:active {
 border-width: 3px;
 	border-color:rgb(172, 137, 116);
 	border-radius: 5;
+	font: 14pt &quot;BM JUA_TTF&quot;;
 
 }
 
