@@ -105,7 +105,7 @@ public:
         textEdit->setReadOnly(true);
         pushButton_2 = new QPushButton(ChatWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(715, 4, 32, 32));
+        pushButton_2->setGeometry(QRect(720, 4, 32, 32));
         pushButton_2->setFont(font1);
         pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -180,7 +180,7 @@ public:
         label_2->setMargin(0);
         pushButton_4 = new QPushButton(ChatWidget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(675, 4, 32, 32));
+        pushButton_4->setGeometry(QRect(685, 4, 32, 32));
         pushButton_4->setFont(font1);
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"

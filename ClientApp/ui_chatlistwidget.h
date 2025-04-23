@@ -99,13 +99,15 @@ public:
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(320, 56, 141, 71));
         QFont font1;
-        font1.setFamily(QString::fromUtf8("Ubuntu"));
-        font1.setPointSize(24);
-        font1.setBold(true);
-        font1.setWeight(75);
+        font1.setFamily(QString::fromUtf8("BM JUA_TTF"));
+        font1.setPointSize(26);
+        font1.setBold(false);
+        font1.setItalic(false);
+        font1.setWeight(50);
         label->setFont(font1);
         label->setStyleSheet(QString::fromUtf8("color: rgb(214, 192, 175);\n"
-"background-color:transparent;"));
+"background-color:transparent;\n"
+"font: 26pt \"BM JUA_TTF\";"));
         pushButton = new QPushButton(ChatListWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(630, 136, 151, 51));
@@ -153,7 +155,7 @@ public:
 "}"));
         pushButton_5 = new QPushButton(ChatListWidget);
         pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(675, 4, 32, 32));
+        pushButton_5->setGeometry(QRect(685, 4, 32, 32));
         pushButton_5->setFont(font);
         pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -200,7 +202,7 @@ public:
 "}"));
         pushButton_4 = new QPushButton(ChatListWidget);
         pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(715, 4, 32, 32));
+        pushButton_4->setGeometry(QRect(720, 4, 32, 32));
         pushButton_4->setFont(font);
         pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "	font: 16pt \"BM JUA_TTF\";\n"
@@ -312,7 +314,7 @@ public:
         listWidget->setGeometry(QRect(20, 213, 761, 391));
         QFont font4;
         font4.setFamily(QString::fromUtf8("BM JUA_TTF"));
-        font4.setPointSize(14);
+        font4.setPointSize(20);
         font4.setBold(false);
         font4.setItalic(false);
         font4.setWeight(50);
@@ -325,8 +327,11 @@ public:
 "	border-radius: 10;\n"
 "	background-color: rgb(197, 165, 142);\n"
 " 	show-decoration-selected: 1; \n"
-"	\n"
-"	font: 14pt \"BM JUA_TTF\";\n"
+"}\n"
+"\n"
+"QListView::item{\n"
+"	padding: 6px;\n"
+"    margin: 4px;\n"
 "}\n"
 "\n"
 "QListView::item:alternate {\n"
@@ -336,33 +341,29 @@ public:
 "border-width: 3px;\n"
 "	border-color:rgb(172, 137, 116);\n"
 "	border-radius: 5;\n"
-"	font: 14pt \"BM JUA_TTF\";\n"
 "}\n"
 "\n"
 "QListView::item:selected {\n"
 "    color:rgb(214, 192, 175);\n"
 "	background-color:rgb(255, 162, 0);\n"
 "	border-radius: 10px;\n"
-"	font: 14pt \"BM JUA_TTF\";\n"
 "}\n"
 "\n"
 "QListView::item:selected:!active {\n"
 "	  color:rgb(214, 192, 175);\n"
 "	background-color:rgb(116, 88, 80);\n"
-"border-width: 3px;\n"
+"border-width: 0px;\n"
 "	border-color:rgb(214, 192, 175);\n"
 "	border-radius: 5;\n"
-"	font: 14pt \"BM JUA_TTF\";\n"
 "}\n"
 "\n"
 "QListView::item:selected:active {\n"
 "    color:rgb(116, 88, 80);\n"
-"	background-c"
-                        "olor:rgb(214, 192, 175);\n"
-"border-width: 3px;\n"
-"	border-color:rgb(172, 137, 116);\n"
+"	background-color:rgb(214, 192, 175);\n"
+"border-width: 0px;\n"
+"	border-co"
+                        "lor:rgb(172, 137, 116);\n"
 "	border-radius: 5;\n"
-"	font: 14pt \"BM JUA_TTF\";\n"
 "\n"
 "}\n"
 "\n"
@@ -373,6 +374,12 @@ public:
 "	border-color:rgb(172, 137, 116);\n"
 "	border-radius: 5;\n"
 "}"));
+        listWidget->setResizeMode(QListView::Adjust);
+        listWidget->setLayoutMode(QListView::SinglePass);
+        listWidget->setSpacing(0);
+        listWidget->setGridSize(QSize(200, 50));
+        listWidget->setUniformItemSizes(false);
+        listWidget->setSortingEnabled(false);
         label_2->raise();
         lineEdit_3->raise();
         pushButton_3->raise();

@@ -136,13 +136,15 @@ public:
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(130, 150, 541, 51));
         QFont font3;
-        font3.setFamily(QString::fromUtf8("Ubuntu"));
-        font3.setPointSize(34);
-        font3.setBold(true);
-        font3.setWeight(75);
+        font3.setFamily(QString::fromUtf8("BM JUA_TTF"));
+        font3.setPointSize(35);
+        font3.setBold(false);
+        font3.setItalic(false);
+        font3.setWeight(50);
         label->setFont(font3);
         label->setStyleSheet(QString::fromUtf8("color: rgb(214, 192, 175);\n"
-"background-color:transparent;"));
+"background-color:transparent;\n"
+"font: 35pt \"BM JUA_TTF\";"));
         label->setAlignment(Qt::AlignCenter);
         pushButton_2 = new QPushButton(LoginWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
