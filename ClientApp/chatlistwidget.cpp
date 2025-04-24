@@ -43,11 +43,14 @@ void ChatListWidget::addchatroom(QString addroomname)
 
     QListWidgetItem *pItem=new QListWidgetItem;
     pItem->setText(addroomname);
-    QFont font = QFont("Ubuntu");
-    font.setStyleHint (QFont::Monospace);
-    font.setPointSize (20);
-    font.setFixedPitch (true);
+    QFont font("BM JUA", 25);
+//    font.setStyleHint (QFont::Monospace);
+//    font.setPointSize (20);
+//    font.setFixedPitch (true);
     pItem->setFont (font);
+    // 글씨 꼬리까지 여유 공간 확보 (기존보다 조금 더)
+    pItem->setSizeHint(QSize(200, 60));  // 보통 50~60px 사이 추천
+
     ui->listWidget->addItem(pItem);
 
 

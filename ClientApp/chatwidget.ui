@@ -115,7 +115,7 @@ background-color: rgb(197, 165, 142);</string>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>755</x>
+     <x>720</x>
      <y>4</y>
      <width>32</width>
      <height>32</height>
@@ -138,7 +138,7 @@ background-color: rgb(197, 165, 142);</string>
 	background-repeat: no-repeat;
     background-position: center;
 	
-	background-image:url(:/window_icons/close_mid.png);
+	background-image:url(:/window_icons/size_mid.png);
 
 	border: none;
 	border-radius:10px;
@@ -154,7 +154,7 @@ background-color: rgb(197, 165, 142);</string>
 QPushButton:hover{
 	background-color:  transparent;
 	
-	background-image:url(:/window_icons/close.png);
+	background-image:url(:/window_icons/size.png);
 	color: rgb(214, 192, 175);
 	
     border-left: 0px solid rgb(214, 192, 175);
@@ -166,7 +166,7 @@ QPushButton:hover{
 QPushButton:pressed{
 	color: rgb(214, 192, 175);
 	
-	background-image: url(:/window_icons/close_dark.png);
+	background-image: url(:/window_icons/size_darl.png);
 	background-color:  transparent;
 	border-top: 0px solid rgb(214, 192, 175);
 	border-left: 0px solid rgb(214, 192, 175);
@@ -241,7 +241,7 @@ padding-left: 50px; padding-right: 50px;</string>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>675</x>
+     <x>685</x>
      <y>4</y>
      <width>32</width>
      <height>32</height>
@@ -307,7 +307,7 @@ QPushButton:pressed{
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>715</x>
+     <x>755</x>
      <y>4</y>
      <width>32</width>
      <height>32</height>
@@ -330,7 +330,7 @@ QPushButton:pressed{
 	background-repeat: no-repeat;
     background-position: center;
 	
-	background-image:url(:/window_icons/size_mid.png);
+	background-image:url(:/window_icons/close_mid.png);
 
 	border: none;
 	border-radius:10px;
@@ -346,7 +346,7 @@ QPushButton:pressed{
 QPushButton:hover{
 	background-color:  transparent;
 	
-	background-image:url(:/window_icons/size.png);
+	background-image:url(:/window_icons/close.png);
 	color: rgb(214, 192, 175);
 	
     border-left: 0px solid rgb(214, 192, 175);
@@ -358,7 +358,7 @@ QPushButton:hover{
 QPushButton:pressed{
 	color: rgb(214, 192, 175);
 	
-	background-image: url(:/window_icons/size_darl.png);
+	background-image: url(:/window_icons/close_dark.png);
 	background-color:  transparent;
 	border-top: 0px solid rgb(214, 192, 175);
 	border-left: 0px solid rgb(214, 192, 175);
@@ -426,18 +426,18 @@ p, li { white-space: pre-wrap; }
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>pushButton_5</sender>
    <signal>clicked()</signal>
    <receiver>ChatWidget</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>680</x>
-     <y>17</y>
+     <x>765</x>
+     <y>32</y>
     </hint>
     <hint type="destinationlabel">
-     <x>695</x>
-     <y>136</y>
+     <x>765</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>

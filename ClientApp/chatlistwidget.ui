@@ -112,15 +112,17 @@ QPushButton:pressed{
    </property>
    <property name="font">
     <font>
-     <family>Ubuntu</family>
-     <pointsize>24</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
+     <family>BM JUA_TTF</family>
+     <pointsize>26</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(214, 192, 175);
-background-color:transparent;</string>
+background-color:transparent;
+font: 26pt &quot;BM JUA_TTF&quot;;</string>
    </property>
    <property name="text">
     <string>Chat List</string>
@@ -188,7 +190,7 @@ QPushButton:pressed{
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>675</x>
+     <x>685</x>
      <y>4</y>
      <width>32</width>
      <height>32</height>
@@ -254,7 +256,7 @@ QPushButton:pressed{
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>715</x>
+     <x>720</x>
      <y>4</y>
      <width>32</width>
      <height>32</height>
@@ -424,7 +426,10 @@ QPushButton:pressed{
    <property name="font">
     <font>
      <family>BM JUA_TTF</family>
-     <pointsize>24</pointsize>
+     <pointsize>20</pointsize>
+     <weight>50</weight>
+     <italic>false</italic>
+     <bold>false</bold>
     </font>
    </property>
    <property name="styleSheet">
@@ -436,7 +441,11 @@ QPushButton:pressed{
 	border-radius: 10;
 	background-color: rgb(197, 165, 142);
  	show-decoration-selected: 1; 
-	
+}
+
+QListView::item{
+	padding: 6px;
+    margin: 4px;
 }
 
 QListView::item:alternate {
@@ -457,7 +466,7 @@ QListView::item:selected {
 QListView::item:selected:!active {
 	  color:rgb(214, 192, 175);
 	background-color:rgb(116, 88, 80);
-border-width: 3px;
+border-width: 0px;
 	border-color:rgb(214, 192, 175);
 	border-radius: 5;
 }
@@ -465,7 +474,7 @@ border-width: 3px;
 QListView::item:selected:active {
     color:rgb(116, 88, 80);
 	background-color:rgb(214, 192, 175);
-border-width: 3px;
+border-width: 0px;
 	border-color:rgb(172, 137, 116);
 	border-radius: 5;
 
@@ -478,6 +487,27 @@ QListView::item:hover {
 	border-color:rgb(172, 137, 116);
 	border-radius: 5;
 }</string>
+   </property>
+   <property name="resizeMode">
+    <enum>QListView::Adjust</enum>
+   </property>
+   <property name="layoutMode">
+    <enum>QListView::SinglePass</enum>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="gridSize">
+    <size>
+     <width>200</width>
+     <height>50</height>
+    </size>
+   </property>
+   <property name="uniformItemSizes">
+    <bool>false</bool>
+   </property>
+   <property name="sortingEnabled">
+    <bool>false</bool>
    </property>
   </widget>
   <zorder>label_2</zorder>
