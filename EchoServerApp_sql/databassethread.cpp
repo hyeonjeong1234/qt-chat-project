@@ -76,7 +76,7 @@ DataBasseThread::DataBasseThread(QObject *obj)
                       << query.lastError().text().toStdString() << std::endl;
         }
 
-
+//test merge
         clientModel = new QSqlTableModel();
         clientModel->setTable("client");
         clientModel->setEditStrategy(QSqlTableModel::OnFieldChange);
