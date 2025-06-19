@@ -454,6 +454,28 @@ void DataBasseThread:: get_friend_list(QString userId ,QTcpSocket* socket)
         }
        emit return_friends(friends_list,socket);
 }
+void DataBasseThread:: get_message(QString msgport ,QString timestamp ,QTcpSocket* socket)
+{
+
+//    QSqlQuery query;
+//    QList<QString> message_list;
+//        query.prepare(R"(
+//            SELECT room_id
+//            FROM Messages
+//            WHERE room_id = :room_id
+//        )");
+//        query.bindValue(":room_id", room_id);
+
+//        if (!query.exec()) {
+//            qDebug("Error fetching friend list");
+//            QList<QString> error {"\0"};
+//            emit return_friends(error,socket);
+//        }
+//        while (query.next()) {
+//             friends_list.append(query.value(0).toString());
+//        }
+//       emit return_friends(friends_list,socket);
+}
 void DataBasseThread::slot_get_new_friend(QString userId,QString friendId)
 {
 

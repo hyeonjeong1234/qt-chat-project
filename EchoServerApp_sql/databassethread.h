@@ -34,6 +34,7 @@ public:
     void showClient();
     void printData(QSqlTableModel*, int, int);
     void insertData(QSqlTableModel*, int, const QString&, const QString&, const QString&, const QString&, const QString&);
+    void get_message(QString msgport ,QString timestamp ,QTcpSocket* socket);
     //void insertData(QSqlTableModel &model, int num, const QString &id, const QString &pw, const QString &name, const QString &phone, const QString &address);
 public slots:
     void process();
