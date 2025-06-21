@@ -46,3 +46,11 @@ QString Message::getMsgContext()
 {
     return m_msgContext;
 }
+void Message::setMsgRevCli(QString revCli)
+{
+    this->m_msgRevCli = revCli;
+}
+QString Message::getMsgRevCli()
+{
+    return m_msgRevCli;
+}

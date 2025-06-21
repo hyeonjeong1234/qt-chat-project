@@ -158,7 +158,7 @@ void Widget::msgProcess(QTcpSocket *clientConnection,  QJsonObject json)
      newMessaage->setMsgPort(json["msgport"].toString());
      newMessaage->setMsgSendCLi(json["sendcli"].toString());
      newMessaage->setMsgContext(json["msgcontext"].toString());
-
+     newMessaage->setMsgRevCli(json["revcli"].toString());
      QStringList sepContext = newMessaage->getMsgContext().split(',');
 
      qDebug()<<json;
@@ -345,6 +345,7 @@ void Widget::sendData(QString curport)
         json["timestamp"] = QDateTime::currentDateTime().toString(Qt::ISODate);
         json["msgport"] = myInfo->currentPort;  // 추가 필드 예시
         json["sendcli"] = myInfo->getMyId(); // 읽음 여부 추가
+        json["revcli"] = curport;
         json["msgcontext"] = forsend;
 
     joinChatList[currport]->setText(myInfo->getMyId(),"me:"+forsend);
