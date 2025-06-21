@@ -14,17 +14,19 @@ public:
     void setMsgType(int type);
     void setMsgSendCLi(QString sendCli);
     void setMsgContext(QString context);
+    void setMsgRevCli(QString revCli);
     QString getMsgPort();
     int getMsgType();
     QString getMsgSendCli();
     QString getMsgContext();
-
+    QString getMsgRevCli();
 private:
     int m_msgType;
     QString m_msgNum;//메시지 유형? 0=>회원정보(회원가입시), 1=>채팅메시지 이런식?
     QString m_msgPort;
     QString m_msgSendCli;
     QString m_msgContext;
+    QString m_msgRevCli;
 };
 
 #endif // MESSAGE_H
